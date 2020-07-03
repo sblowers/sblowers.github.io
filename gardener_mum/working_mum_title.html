@@ -1,0 +1,1411 @@
+<html>
+<head>
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Press+Start+2P">
+<style>
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+body {
+  background: #E5E5E5;
+  background-image: url("./overall_background.jpg");
+  padding: 50px;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
+
+#card, #card-front, #card-inside {
+  height: 600px;
+}
+
+.wrap {
+    padding: 1.5em 2.5em;
+    height: 100%;
+}
+#card-front, #card-inside {
+  width: 70%;
+  -webkit-box-shadow: 2px 2px 30px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .5);
+  -moz-box-shadow: 2px 2px 30px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .5);
+  box-shadow: 2px 2px 30px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .5);
+  position: absolute;
+  left: 50%;
+  top: 5%;
+}
+
+
+#card-inside .wrap {
+    background: #FFFFFF;
+    -webkit-box-shadow: inset 2px 0 1px rgba(0, 0, 0, .05);
+    -moz-box-shadow: inset 2px 0 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 2px 0 1px rgba(0, 0, 0, .05);
+}
+#card {
+    max-width: 960px;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    perspective: 5000px;
+    -moz-perspective: 5000px;
+    -webkit-perspective: 5000px;
+    position: relative;
+}
+
+
+#card-inside {
+	background: url("./background.png");
+	 background-size: 100% 100%;
+	
+}
+
+p {
+    margin-top: 1em;
+}
+
+p:first-child {
+    margin-top: 0;
+}
+
+p.signed {
+    margin-top: 1.5em;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#card-front {
+    background-color: #aaaaaa;
+            transform-origin: left;
+       -moz-transform-origin: left;
+    -webkit-transform-origin: left;
+            transition:         transform 1s linear;
+       -moz-transition:    -moz-transform 1s linear;
+    -webkit-transition: -webkit-transform 1s linear;
+    position: relative;
+}
+
+#card-front .wrap {
+            transition: background 1s linear;
+       -moz-transition: background 1s linear;
+    -webkit-transition: background 1s linear;
+}
+
+#card-front button {
+  position: absolute;
+  bottom: 1em;
+  right: -12px;
+  background: #F44;
+  color: #FFF;
+  font-family: 'Nobile', sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.5em;
+  padding: .5em;
+  border: none;
+  cursor: pointer;
+          box-shadow: 2px 2px 3px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .4);
+     -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .4);
+  -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .4);
+}
+
+#card-front button:hover,
+#card-front button:focus {
+  background: #F22;
+}
+
+#close {
+  display: none;
+}
+
+#card.open-fully #close,
+#card-open-half #close {
+  display: inline;
+}
+
+#card.open-fully #open {
+  display: none;
+}
+
+
+#card.open-half #card-front,
+#card.close-half #card-front {
+            transform: rotateY(-90deg);
+       -moz-transform: rotateY(-90deg);
+    -webkit-transform: rotateY(-90deg);
+}
+#card.open-half #card-front .wrap {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+#card.open-fully #card-front,
+#card.close-half #card-front {
+  background: #FFEFEF;
+}
+
+#card.open-fully #card-front {
+    transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+}
+
+#card.open-fully #card-front .wrap {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#card.open-fully #card-front .wrap *,
+#card.close-half #card-front .wrap * {
+   display: none;
+}
+
+.fade-in-out {
+  animation: fadeInOut 3s infinite;
+}
+@keyframes fadeInOut {
+  0% {opacity:1;}
+  50% {opacity:0;}
+  100% {opacity:1;}
+}
+
+#music {
+  position: absolute;
+  left: 0%;
+  top: 90%;
+}
+
+#music2 {
+  position: absolute;
+  left: 25%;
+  top: 90%;
+}
+
+footer {
+  max-width: 500px;
+  margin: 40px auto;
+  font-family: 'Nobile', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #888;
+  text-align: center;
+}
+
+.mum_idle_class {
+  position: absolute;
+  background: transparent url("./mum_sprite.png") no-repeat;   /* Our sprite as the viewport background */
+  animation: mum_idle 0.85s steps(2) infinite; 
+  background-size: 200% 300%; /*(#cols*100%, #rows*100%) */
+  background-position: 0 0%;
+}
+
+/* Animation keyframes for the sprite */
+@keyframes mum_idle {
+  100% { background-position: 200% 0%; } /*(100% + 100%/(steps-1) , 0 */
+}
+
+.mum_snip_class {
+  position: absolute;
+  background: transparent url("./mum_sprite.png") no-repeat;   /* Our sprite as the viewport background */
+  background-size: 200% 300%; /*(#cols*100%, #rows*100%) */
+  background-position: 0 100%;
+}
+
+.mum_moving_left_class {
+  position: absolute;
+  background: transparent url("./mum_sprite.png") no-repeat;   /* Our sprite as the viewport background */
+  animation: mum_moving_a 0.4s steps(2) infinite, mum_moving_c 0.4s linear infinite; 
+  background-size: 200% 300%; /*(#cols*100%, #rows*100%) */
+  background-position: 0 50%;
+}
+
+.mum_moving_right_class {
+  position: absolute;
+  background: transparent url("./mum_sprite.png") no-repeat;   /* Our sprite as the viewport background */
+  animation: mum_moving_a 0.4s steps(2) infinite, mum_moving_b 0.4s linear infinite; 
+  background-size: 200% 300%; /*(#cols*100%, #rows*100%) */
+  background-position: 0 50%;
+}
+
+/* Animation keyframes for the sprite */
+@keyframes mum_moving_a {
+  100% { background-position: 200% 50%; } /*(100% + 100%/(steps-1) , 0 */
+}
+
+@keyframes mum_moving_b {
+  50% {transform: translate(0%,3%);}
+  100% {transform: translate(0%,0%);}
+}
+
+@keyframes mum_moving_c {
+  0% {transform: translate(0%,0%) scaleX(-1);}
+  50% {transform: translate(0%,3%) scaleX(-1);}
+  100% {transform: translate(0%,0%) scaleX(-1);}
+}
+
+.flower {
+  position: absolute;
+  background: transparent url("./test_flower2.png") no-repeat;   /* Our sprite as the viewport background */
+  animation: flower_dance 1s steps(6) infinite; 
+  background-size: 600% 200%; /*(#cols*100%, #rows*100%) */
+  background-position: 0 0%;
+}
+
+/* Animation keyframes for the sprite */
+@keyframes flower_dance {
+  100% { background-position: 120% 0%; } /*(100% + 100%/(steps-1) , 0 */
+}
+
+.flower_dead_body {
+  position: absolute;
+  animation: fade_out 3s;
+  background: transparent url("./test_flower2.png") no-repeat; 
+  background-size: 600% 200%; /*(#cols*100%, #rows*100%) */
+  background-position: 20% 100%;
+}
+
+.flower_dead_head{
+  position: absolute;
+  animation: fade_out 3s, flower_head_move 3s linear;
+  background: transparent url("./test_flower2.png") no-repeat; 
+  background-size: 600% 200%; /*(#cols*100%, #rows*100%) */
+  background-position: 0% 100%;
+}
+
+@keyframes fade_out {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@keyframes flower_head_move {
+  100% {transform: translate(10%,10%);}
+}
+
+
+.tentacle {
+  position: absolute;
+  background: transparent url("./tentacle_sprite.png") no-repeat;   /* Our sprite as the viewport background */
+  animation: tentacle_dance 2s steps(8) infinite; 
+  background-size: 800% 200%; /*(#cols*100%, #rows*100%) */
+  background-position: 0 0%;
+}
+
+/* Animation keyframes for the sprite */
+@keyframes tentacle_dance {
+  100% { background-position: 114.2857% 0%; } /*(100% + 100%/(steps-1) , 0 */
+}
+
+.tentacle_dead_body {
+  position: absolute;
+  animation: fade_out 3s;
+  background: transparent url("./tentacle_sprite.png") no-repeat; 
+  background-size: 600% 200%; /*(#cols*100%, #rows*100%) */
+  background-position: 0% 100%;
+}
+
+.tentacle_dead_head{
+  position: absolute;
+  animation: fade_out 3s, tentacle_head_move 3s linear;
+  background: transparent url("./tentacle_sprite.png") no-repeat; 
+  background-size: 600% 200%; /*(#cols*100%, #rows*100%) */
+  background-position: 14.2857% 100%;
+}
+
+@keyframes tentacle_head_move {
+  100% {transform: translate(20%,20%);}
+}
+
+#score {
+	position: absolute;
+	top: 5%; 
+	left: 43%; 
+	width: 90%; 
+	height: 5%; 
+	font-family: 'Press Start 2P';
+	color: #ffffff;
+	z-index: 200;
+}
+
+.score_increase {
+	position: absolute;
+	font-family: 'Press Start 2P'; 
+	color: #cc00ff;
+	z-index: 200;
+	animation: score_move 2s;
+}
+
+@keyframes score_move {
+  0% {opacity: 1;}
+  100% {transform: translate(0%,-20%); opacity: 0}
+}
+
+.endText {
+	position: absolute;
+	font-family: 'Press Start 2P'; 
+	color: #ffffff;
+	z-index: 200;
+	top: 30%;
+	left: 56%;
+	font-size: 150%;
+}
+
+.endText2 {
+	position: absolute;
+	font-family: 'Press Start 2P'; 
+	color: #ffffff;
+	z-index: 200;
+	top: 7%;
+	left: 10%;
+	font-size: 150%;
+}
+
+.endImage {
+	position: absolute; 
+	top: 40%; 
+	left: 5%; 
+	width: 50%; 
+	height: 45%; 
+	display: block;
+
+}
+
+.startingOverlay {
+	position: absolute; 
+	top: 0%; 
+	left: 0%; 
+	width: 100%; 
+	height: 100%; 
+	display: block;
+	background-color: #000000
+
+}
+
+.skipText {
+	position: absolute;
+	font-family: 'Press Start 2P'; 
+	color: #ffffff;
+	z-index: 200;
+	top: 91%;
+	left: 77%;
+	font-size: 200%;
+}
+
+.introText {
+	position: absolute;
+	font-family: 'Press Start 2P'; 
+	color: #ffffff;
+	z-index: 200;
+	font-size: 150%;
+	animation: fade-in 5s;
+	transform: translate(0%,-30%);
+}
+
+@keyframes fade-in {
+  0% {transform: translate(0%, 0%); opacity: 0;}
+  100% {transform: translate(0%,-30%); opacity: 1}
+}
+
+.press_start {
+	position: absolute; 
+	top: 40%; 
+	left: 30%; 
+	width: 40%; 
+	height: 15%; 
+	display: block;
+	animation: fadeInOut 3s infinite;
+}
+
+@keyframes fadeInOut {
+  0% {opacity:1;}
+  50% {opacity:0;}
+  100% {opacity:1;}
+}
+
+.title_image {
+	position: absolute; 
+	top: 8%; 
+	left: 5%; 
+	width: 95%; 
+	height: 30%; 
+	display: block;
+	animation: fade-in 5s;
+	transform: translate(0%,-30%);
+
+}
+
+.startImage {
+	position: absolute; 
+	top: 15%; 
+	left: 7%; 
+	width: 50%; 
+	height: 45%; 
+	display: block;
+	animation: fade-in 5s;
+	transform: translate(0%,-30%);
+
+}
+
+
+.spaceBar {
+	position: absolute; 
+	top: 70%; 
+	left: 60%; 
+	width: 32%; 
+	height: 10%; 
+	display: block;
+	animation: fade-in 5s;
+	transform: translate(0%,-30%);
+
+}
+
+.arrowKeys {
+	position: absolute; 
+	top: 63%; 
+	left: 14%; 
+	width: 25%; 
+	height: 20%; 
+	display: block;
+	animation: fade-in 5s;
+	transform: translate(0%,-30%);
+
+}
+
+
+
+  
+</style>
+
+</head>
+<body>
+<audio id='music' controls loop>
+	<source src="./gardener_mum_theme.mp3">
+</audio>
+<audio id='sound_snip'>
+	<source src="./gardener_mum_snip.mp3">
+</audio>
+<audio id='sound_sigh'>
+	<source src="./gardener_mum_sigh.mp3">
+</audio>
+<audio id='final_score_gain'>
+	<source src="./gardener_mum_score_gain.mp3">
+</audio>
+
+
+
+
+<div id="card">
+    <div id="card-inside">
+		<div style="position: absolute; top: 0%; width: 100%; height: 100%; display: block;margin-left: auto;  margin-right: auto; overflow: hidden;" id="inside_container">
+		</div>
+		
+    </div>
+
+    <div id="card-front">
+	  <div style="position: absolute; width: 100%; height: 100%;" id="frontimage">
+		<div style="position: absolute; top: 30%; left: 38%; width: 30%; height: 40%; display: block;" class="flower"></div>
+	  </div>
+      <button id="open">&gt;</button>
+      <button id="close">&lt;</button>
+    </div>
+	
+</div>
+
+
+
+
+  
+<script type="text/javascript">
+
+document.getElementById('music').onfocus = function() {document.getElementById('music').blur()} 
+
+checkEndGame_timer = null
+endGame_timer1 = null
+endGame_timer2 = null
+
+intro_timer0 = null
+intro_timer1 = null
+intro_timer2 = null
+intro_timer3 = null
+intro_timer4 = null
+
+
+flower_id_no = 0
+flower_list = []
+score = 0
+score_id = 0
+score = 0
+survivors = 0
+prevent_snipping = false  
+
+
+mum_character = null
+MumCharacter = class {
+	constructor(id, parent, top, left, width, height) {
+		this.id = id
+		this.parent = parent
+	
+		this.mum = document.createElement("DIV");
+		this.mum.className = "mum_idle_class"
+		this.mum.id = id
+		this.mum.style.top = top
+		this.mum.style.left = left
+		this.mum.style.width = width
+		this.mum.style.height = height
+		this.mum.style.zIndex = top.match(/\d+/g).map(Number)[0] - height.match(/\d+/g).map(Number)[0]
+		this.parent.appendChild(this.mum)
+		
+		
+		this.facingRight = true
+		this.isMoving = [false, false, false, false] // left right up down
+		this.move_speed = 0.1 *3
+		this.moving_track = null
+		
+		this.isSnipping = false
+		this.canUnsnip_time = true
+		this.canUnsnip_keyDown = true
+	}
+	
+	flipLR = () => {
+		if (this.facingRight) {
+			this.mum.style.transform = "scaleX(-1)"
+			this.facingRight = false
+		} else {
+			this.mum.style.transform = "scaleX(1)"
+			this.facingRight = true
+		}
+	}
+	
+	snip = () => {
+		if (this.isSnipping) {return}
+		
+		this.isSnipping = true
+		
+		this.isMoving = [false, false, false, false] // left right up down
+		this.endMoving()
+		
+		this.doSnipping()
+		
+		this.canUnsnip_time = false
+		this.canUnsnip_keyDown = false
+		this.mum.className = "mum_snip_class"
+		document.getElementById('sound_snip').currentTime = 0;
+		document.getElementById('sound_snip').play();
+		this.timer_unsnip = setTimeout(this.release_unsnip_time, 100)
+	}
+	
+	doSnipping = () => {
+		var snip_box, flower, flower_centre
+		if (this.facingRight) {
+			snip_box = [parseFloat(this.mum.style.left.slice(0, -1)) + 0.7*parseFloat(this.mum.style.width.slice(0, -1)),
+						parseFloat(this.mum.style.left.slice(0, -1)) + 1.0*parseFloat(this.mum.style.width.slice(0, -1)),
+						parseFloat(this.mum.style.top.slice(0, -1)) + 0.2*parseFloat(this.mum.style.height.slice(0, -1)),
+						parseFloat(this.mum.style.top.slice(0, -1)) + 0.8*parseFloat(this.mum.style.height.slice(0, -1))]
+		} else {
+			snip_box = [parseFloat(this.mum.style.left.slice(0, -1)) + 0.0*parseFloat(this.mum.style.width.slice(0, -1)),
+						parseFloat(this.mum.style.left.slice(0, -1)) + 0.3*parseFloat(this.mum.style.width.slice(0, -1)),
+						parseFloat(this.mum.style.top.slice(0, -1)) + 0.2*parseFloat(this.mum.style.height.slice(0, -1)),
+						parseFloat(this.mum.style.top.slice(0, -1)) + 0.8*parseFloat(this.mum.style.height.slice(0, -1))]
+		}
+	
+		for (var i = 0; i < flower_list.length; i++) {
+			flower = flower_list[i]
+
+			flower_centre = [parseFloat(flower.flower.style.left.slice(0, -1)) + 0.5*parseFloat(flower.flower.style.width.slice(0, -1)),
+							 parseFloat(flower.flower.style.top.slice(0, -1)) + 0.5*parseFloat(flower.flower.style.height.slice(0, -1))]
+							 
+			if (flower_centre[0] > snip_box[0] && flower_centre[0] < snip_box[1] &&	flower_centre[1] > snip_box[2] && flower_centre[1] < snip_box[3]) {
+				if (!flower.isDying){
+					flower.onDeath()
+				}
+			}
+			
+		}
+	}
+	
+	release_unsnip_time = () => {
+		this.canUnsnip_time = true
+		this.unsnip()
+	}
+	
+	release_unsnip_keyDown = (e) => {
+		if (e.key == " ") {
+			document.removeEventListener("keyup", this.release_unsnip_keyDown)
+			this.canUnsnip_keyDown = true
+			this.unsnip()
+		}
+	}
+	
+	unsnip = () => { 
+		if (this.isSnipping && this.canUnsnip_time && this.canUnsnip_keyDown) {
+			this.isSnipping = false
+			this.mum.className = "mum_idle_class"
+		}
+	}
+	
+	moveLeft = () => {
+		if (this.isSnipping) {return}
+		if (!this.isMoving[0]) {
+			this.isMoving[0] = true
+			if (this.isMoving[1]) {this.stopMovingRight(null)}
+			document.removeEventListener("keyup", mum_character.stopMovingRight)
+			this.mum.className = "mum_moving_left_class"
+			this.moving()
+		}
+	}
+	
+	moveRight = () => {
+		if (this.isSnipping) {return}
+		if (!this.isMoving[1]) {
+			this.isMoving[1] = true
+			if (this.isMoving[0]) {this.stopMovingLeft(null)}
+			document.removeEventListener("keyup", mum_character.stopMovingLeft)
+			this.mum.className = "mum_moving_right_class"
+			this.moving()
+		}
+	}
+	
+	moveUp = () => {
+		if (this.isSnipping) {return}
+		if (!this.isMoving[2]) {
+			this.isMoving[2] = true
+			if (this.isMoving[3]) {this.stopMovingDown(null)}
+			document.removeEventListener("keyup", mum_character.stopMovingDown)
+			if (this.facingRight) {
+				this.mum.className = "mum_moving_right_class"
+			} else {
+				this.mum.className = "mum_moving_left_class"
+			}
+			this.moving()
+		}
+	}
+	
+	moveDown = () => {
+		if (this.isSnipping) {return}
+		if (!this.isMoving[3]) {
+			this.isMoving[3] = true
+			if (this.isMoving[2]) {this.stopMovingUp(null)}
+			document.removeEventListener("keyup", mum_character.stopMovingUp)
+			if (this.facingRight) {
+				this.mum.className = "mum_moving_right_class"
+			} else {
+				this.mum.className = "mum_moving_left_class"
+			}
+			this.moving()
+		}
+	}
+	
+	stopMovingLeft = (e) => {
+		if (e && e.key != "ArrowLeft") {return}
+		this.isMoving[0] = false
+		if (!this.isMoving.some(function(el) {return el})) {this.endMoving()}
+	}
+	
+	stopMovingRight = (e) => {
+		if (e && e.key != "ArrowRight") {return}
+		this.isMoving[1] = false
+		if (!this.isMoving.some(function(el) {return el})) {this.endMoving()}
+	}
+	
+	stopMovingUp = (e) => {
+		if (e && e.key != "ArrowUp") {return}
+		this.isMoving[2] = false
+		if (!this.isMoving.some(function(el) {return el})) {this.endMoving()}
+	}
+	
+	stopMovingDown = (e) => {
+		if (e && e.key != "ArrowDown") {return}
+		this.isMoving[3] = false
+		if (!this.isMoving.some(function(el) {return el})) {this.endMoving()}
+	}
+	
+	endMoving = () => {
+		document.removeEventListener("keyup", mum_character.stopMovingLeft)
+		document.removeEventListener("keyup", mum_character.stopMovingRight)
+		document.removeEventListener("keyup", mum_character.stopMovingUp)
+		document.removeEventListener("keyup", mum_character.stopMovingDown)
+		this.isMoving = [false, false, false, false]
+		this.mum.className = "mum_idle_class"
+	}
+	
+	moving = () => {
+		if (this.isMoving[0]) {this.mum.style.left = (Math.max(0, parseFloat(this.mum.style.left.slice(0, -1)) - this.move_speed)).toString() + "%"}
+		if (this.isMoving[1]) {this.mum.style.left = (Math.min(100-parseFloat(this.mum.style.width.slice(0, -1)), parseFloat(this.mum.style.left.slice(0, -1)) + this.move_speed)).toString() + "%"}
+		if (this.isMoving[2]) {
+			this.mum.style.top = (Math.max(0, parseFloat(this.mum.style.top.slice(0, -1)) - this.move_speed)).toString() + "%"
+			this.mum.style.zIndex = this.mum.style.top.match(/\d+/g).map(Number)[0]
+		}
+		if (this.isMoving[3]) {
+			this.mum.style.top = (Math.min(100-parseFloat(this.mum.style.height.slice(0, -1)), parseFloat(this.mum.style.top.slice(0, -1)) + this.move_speed)).toString() + "%"
+			this.mum.style.zIndex = this.mum.style.top.match(/\d+/g).map(Number)[0]
+		}
+		
+		if (this.moving_track) {clearTimeout(this.moving_track)}
+		if (this.isMoving.some(function(el) {return el})) {
+			this.moving_track = setTimeout(this.moving, 10)
+		}
+	}
+
+}
+
+buttonController = function(e) {
+	document.getElementById('music').blur() 
+
+	var mum = document.getElementById("mum")
+	if (!mum) {return}
+
+	if (e.key == " ") {
+		e.preventDefault();
+		if (!e.repeat && !prevent_snipping) {
+			mum_character.snip()
+			document.addEventListener("keyup", mum_character.release_unsnip_keyDown)
+		}
+	}
+	
+	if (e.key == "ArrowLeft") {
+		e.preventDefault();
+		if (!e.repeat) {
+			if (!mum_character.isSnipping) {
+				if (mum_character.facingRight) {
+					mum_character.flipLR()
+				}
+				mum_character.moveLeft()
+				document.addEventListener("keyup", mum_character.stopMovingLeft)
+			}	
+		}
+	}
+	
+	if (e.key == "ArrowRight") {
+		e.preventDefault();
+		if (!e.repeat) {
+		if (!mum_character.isSnipping) {
+			if (!mum_character.facingRight) {
+				mum_character.flipLR()
+			}
+			mum_character.moveRight()
+			document.addEventListener("keyup", mum_character.stopMovingRight)
+		}
+		}
+	}
+	
+	if (e.key == "ArrowUp") {
+		e.preventDefault();
+		if (!e.repeat) {
+			if (!mum_character.isSnipping) {
+				mum_character.moveUp()
+				document.addEventListener("keyup", mum_character.stopMovingUp)
+			}
+		}
+	}
+	
+	if (e.key == "ArrowDown") {
+		e.preventDefault();
+		if (!e.repeat) {
+			if (!mum_character.isSnipping) {
+				mum_character.moveDown()
+				document.addEventListener("keyup", mum_character.stopMovingDown)
+			}
+		}
+	}
+	
+	<!-- if (e.key == "p") { -->
+		<!-- e.preventDefault(); -->
+		<!-- for (var i = 0; i < flower_list.length; i++) { -->
+			<!-- if (flower_list[i].moving_track) {clearTimeout(flower_list[i].moving_track)} -->
+		<!-- } -->
+		<!-- clearTimeout(next_level)	 -->
+	<!-- } -->
+}
+
+
+DancingFlower = class {
+	constructor(id, parent, top, left, type, direction = [0,0], move_speed = 0) {
+		
+		if (type == "flower") {
+			this.classA = "flower"
+			this.classB = "flower_dead_head"
+			this.classC = "flower_dead_body"
+			this.width = "10%"
+			this.height = "10%"
+			this.animationDelay = (-Math.random()*0.0).toString() + "s"
+			
+		} else if (type == "tentacle") {
+			this.classA = "tentacle"
+			this.classB = "tentacle_dead_head"
+			this.classC = "tentacle_dead_body"
+			this.width = "20%"
+			this.height = "20%"
+			this.animationDelay = (-Math.random()*1.5).toString() + "s"
+		}
+		
+		this.id = id
+		this.head_id = id + "_head"
+		this.parent = parent
+		this.isDying = false
+		this.isDead = false
+		
+		this.move_speed = move_speed
+		this.direction = direction
+		this.isMoving = false
+		this.moving_track = null
+	
+		this.flower = document.createElement("DIV");
+		this.flower.className = this.classA
+		this.flower.id = id
+		this.flower.style.top = top
+		this.flower.style.left = left
+		this.flower.style.width = this.width
+		this.flower.style.height = this.height
+		this.flower.style.zIndex = Math.max(0, top.match(/\d+/g).map(Number)[0] - this.height.match(/\d+/g).map(Number)[0])
+		this.flower.style.animationDelay = this.animationDelay
+		this.parent.appendChild(this.flower)
+		
+		this.flower.addEventListener('click', this.onDeath)
+		
+		if (move_speed) {
+			this.isMoving = true
+			this.moving()
+		}
+	}
+	
+	onDeath = () => {
+		this.isMoving = false
+		
+		if (this.classA == "flower") {
+			document.getElementById('sound_sigh').currentTime = 0;
+			document.getElementById('sound_sigh').play();
+			
+			var new_top = parseFloat(this.flower.style.top.slice(0, -1)) - 4
+			increaseScore(-200, new_top.toString() + "%", this.flower.style.left)
+		} else {
+			var new_left = parseFloat(this.flower.style.left.slice(0, -1)) + 5
+			increaseScore(100, this.flower.style.top, new_left.toString() + "%")
+		}
+		
+		this.flower.style.animationDelay = "0s"
+		this.flower.removeEventListener('click', this.onDeath)
+		this.isDying = true
+
+		this.flower_head = this.flower.cloneNode(true)
+		this.flower_head.id = this.head_id
+		this.flower_head.className = this.classB
+		this.flower_head.style.zIndex = 150
+		this.parent.appendChild(this.flower_head)
+		this.flower.className = this.classC 
+		
+		this.timer = setTimeout(this.removeObjects, 2900)
+		
+	}
+	
+	removeObjects = () => {
+		var el
+		el = document.getElementById(this.id)
+		if (el) {el.remove()}
+		el = document.getElementById(this.head_id)
+		if (el) {el.remove()}
+		
+		this.isDead = true
+	
+	}
+	
+	moving = () => {
+		var new_left = parseFloat(this.flower.style.left.slice(0, -1))
+		var new_top = parseFloat(this.flower.style.top.slice(0, -1))
+		if (this.direction[0]) {new_left += this.direction[0]*this.move_speed}
+		if (this.direction[1]) {new_top += this.direction[1]*this.move_speed}
+		
+		if (new_left < -10 || new_top < -20 || new_left > 90 || new_top > 90) {
+			this.removeObjects()
+		} else {
+			this.flower.style.left = new_left.toString() + "%"
+			this.flower.style.top = new_top.toString() + "%"
+		}
+		
+		this.doSnipping()
+		
+		if (this.moving_track) {clearTimeout(this.moving_track)}
+		if (this.isMoving) {
+			this.moving_track = setTimeout(this.moving, 10)
+		}
+	}
+	
+	doSnipping = () => {
+		var snip_box, flower, flower_centre
+		
+		snip_box = [parseFloat(this.flower.style.left.slice(0, -1)) + 0.25*parseFloat(this.flower.style.width.slice(0, -1)),
+						parseFloat(this.flower.style.left.slice(0, -1)) + 0.75*parseFloat(this.flower.style.width.slice(0, -1)),
+						parseFloat(this.flower.style.top.slice(0, -1)) + 0.25*parseFloat(this.flower.style.height.slice(0, -1)),
+						parseFloat(this.flower.style.top.slice(0, -1)) + 0.75*parseFloat(this.flower.style.height.slice(0, -1))]
+						
+		for (var i = 0; i < flower_list.length; i++) {
+			flower = flower_list[i]
+			
+			if (flower.classA == "flower") {
+				flower_centre = [parseFloat(flower.flower.style.left.slice(0, -1)) + 0.5*parseFloat(flower.flower.style.width.slice(0, -1)),
+								 parseFloat(flower.flower.style.top.slice(0, -1)) + 0.5*parseFloat(flower.flower.style.height.slice(0, -1))]
+								 
+				if (flower_centre[0] > snip_box[0] && flower_centre[0] < snip_box[1] &&	flower_centre[1] > snip_box[2] && flower_centre[1] < snip_box[3]) {
+					if (!flower.isDying){
+						flower.onDeath()
+					}
+				}
+			}
+			
+		}
+		
+	}
+	
+}
+
+next_level = null
+
+makeFlowers = function() {
+	container = document.getElementById("inside_container")
+
+	for (var i = 0; i < 8; i++) {
+		flower_id = 'flower_' + flower_id_no
+		flower_id_no += 1
+		flower_list.push(new DancingFlower(flower_id, container, (45+Math.sin(Math.PI*2*i/8)*20).toString() + "%", (45+Math.cos(Math.PI*2*i/8)*20).toString() + "%", "flower"))
+	}
+}
+
+
+makeLevel0 = function() {
+	container = document.getElementById("inside_container")
+	
+	var angle
+	for (var i = 0; i < 8; i++) {
+		flower_id = 'tentacle_' + flower_id_no
+		flower_id_no += 1
+		angle =i/8
+		flower_list.push(new DancingFlower(flower_id, container, (35+Math.sin(Math.PI*2*angle)*(35)).toString() + "%", (40+Math.cos(Math.PI*2*angle)*(35)).toString() + "%", "tentacle"))
+	}
+	
+	next_level = setTimeout(makeLevel1, 15000)
+}
+
+makeLevel1 = function() {
+	container = document.getElementById("inside_container")
+	
+	for (var i = 0; i < 3; i++) {
+		flower_id = 'tentacle_' + flower_id_no
+		flower_id_no += 1
+		flower_list.push(new DancingFlower(flower_id, container,  "85%", (25 + i*15).toString() + "%", "tentacle", [0,-1], 0.05))
+	}
+	next_level = setTimeout(makeLevel2, 10000)
+}
+
+makeLevel2 = function() {
+	container = document.getElementById("inside_container")
+
+	for (var i = 0; i < 5; i++) {
+		flower_id = 'tentacle_' + flower_id_no
+		flower_id_no += 1
+		flower_list.push(new DancingFlower(flower_id, container, (10 + i*15).toString() + "%", "0%", "tentacle", [1,0], 0.05))
+	}
+	next_level = setTimeout(makeLevel3, 10000)
+
+}
+
+makeLevel3 = function() {
+	container = document.getElementById("inside_container")
+
+	for (var i = 0; i < 5; i++) {
+		flower_id = 'tentacle_' + flower_id_no
+		flower_id_no += 1
+		flower_list.push(new DancingFlower(flower_id, container, (10 + i*15).toString() + "%", "80%", "tentacle", [-1,0], 0.05))
+	}
+	next_level = setTimeout(makeLevel4, 10000)
+
+}
+
+makeLevel4 = function() {
+	container = document.getElementById("inside_container")
+	
+	var angle
+	for (var i = 1; i < 8; i+=2) {
+		flower_id = 'tentacle_' + flower_id_no
+		flower_id_no += 1
+		angle =i/8
+		flower_list.push(new DancingFlower(flower_id, container, (35+Math.sin(Math.PI*2*angle)*(50)).toString() + "%", (40+Math.cos(Math.PI*2*angle)*(50)).toString() + "%", "tentacle", [-Math.cos(Math.PI*2*angle), -Math.sin(Math.PI*2*angle)], 0.035))
+	}
+		
+	next_level = setTimeout(makeLevel5, 15000)	
+}
+
+makeLevel5 = function() {
+	container = document.getElementById("inside_container")
+	
+	var angle
+	for (var i = 0; i < 8; i++) {
+		flower_id = 'tentacle_' + flower_id_no
+		flower_id_no += 1
+		angle =i/8
+		flower_list.push(new DancingFlower(flower_id, container, (35+Math.sin(Math.PI*2*angle)*(50)).toString() + "%", (40+Math.cos(Math.PI*2*angle)*(50)).toString() + "%", "tentacle", [-Math.cos(Math.PI*2*angle), -Math.sin(Math.PI*2*angle)], 0.02))
+	}
+	
+	checkEndGame_timer = setTimeout(checkEndGame, 1000)
+}
+
+makeLevelEnd = function() {
+	container = document.getElementById("inside_container")
+	
+	var angle
+	for (var i = 0; i < 1; i++) {
+		flower_id = 'tentacle_' + flower_id_no
+		flower_id_no += 1
+		angle =i/8
+		flower_list.push(new DancingFlower(flower_id, container, (35+Math.sin(Math.PI*2*angle)*(50)).toString() + "%", (40+Math.cos(Math.PI*2*angle)*(50)).toString() + "%", "tentacle", [-Math.cos(Math.PI*2*angle), -Math.sin(Math.PI*2*angle)], 0.02))
+	}
+	
+	checkEndGame_timer = setTimeout(checkEndGame, 1000)
+}
+
+checkEndGame = function () {
+	if (checkTentaclesGone()) {
+		endGameTimers()
+	} else {
+		checkEndGame_timer = setTimeout(checkEndGame, 1000)
+	}
+	
+
+}
+
+checkTentaclesGone = function() {
+	container = document.getElementById("inside_container")
+	
+	for (var i = 0; i < container.children.length; i++) {
+		if (container.children[i].className == "tentacle") {return false}
+	}
+	
+	return true
+}
+
+endGameTimers = function() {
+	prevent_snipping = true
+	endGame_timer1  = setTimeout(survivingFlowersScore, 2000)
+	
+	endGame_timer2 = setTimeout(endGame, 4000)
+}
+
+survivingFlowersScore = function() {
+	for (var i = 0; i < flower_list.length; i++) {
+		if (flower_list[i].classA == "flower" && !flower_list[i].isDying && !flower_list[i].isDead) {
+			var new_top = parseFloat(flower_list[i].flower.style.top.slice(0, -1)) - 4
+			increaseScore(1000, new_top.toString() + "%", flower_list[i].flower.style.left)
+			
+			survivors += 1
+		}
+	}
+	
+	document.getElementById('final_score_gain').currentTime = 0;
+	document.getElementById('final_score_gain').play();
+
+}
+
+finalScoreString = function() {
+	var finalScore
+	if (score >= 0) {
+		finalScore = ("000000" + score.toString()).substr(-6,6)
+	} else {
+		finalScore= "-" + ("00000" + (-1*score).toString()).substr(-5,5)
+	}
+	
+	return finalScore
+}
+
+endGame = function() {
+	cleanUp()
+	container = document.getElementById("inside_container")
+	
+	var image_html = document.createElement("IMG");
+	image_html.src = "./front_image.png"
+	image_html.className = "endImage"
+	container.appendChild(image_html)
+	
+	
+	var div_html = document.createElement("DIV");
+	div_html.className = "endText"
+	container.appendChild(div_html)
+	
+	var div_html2
+	div_html2 = document.createElement("DIV"); div_html2.innerHTML = "YOU SAVED " + survivors.toString() + " FLOWERS"; div_html.appendChild(div_html2)
+	div_html2 = document.createElement("DIV"); div_html2.innerHTML = "<br>"; div_html.appendChild(div_html2)
+	div_html2 = document.createElement("DIV"); div_html2.innerHTML = "FINAL SCORE:"; div_html.appendChild(div_html2)
+	div_html2 = document.createElement("DIV"); div_html2.innerHTML = "   " + finalScoreString(); div_html.appendChild(div_html2)
+	div_html2 = document.createElement("DIV"); div_html2.innerHTML = "<br>"; div_html.appendChild(div_html2)
+	div_html2 = document.createElement("DIV"); div_html2.innerHTML = "HAPPY"; div_html.appendChild(div_html2) 
+	div_html2 = document.createElement("DIV"); div_html2.innerHTML = "BIRTHDAY"; div_html.appendChild(div_html2) 
+	div_html2 = document.createElement("DIV"); div_html2.innerHTML = "MUM!!!"; div_html.appendChild(div_html2) 
+	div_html2 = document.createElement("DIV"); div_html2.innerHTML = "<br>"; div_html.appendChild(div_html2)
+	div_html2 = document.createElement("DIV"); div_html2.innerHTML = "LOTS OF LOVE,"; div_html.appendChild(div_html2)
+	div_html2 = document.createElement("DIV"); div_html2.innerHTML = "STEPHEN & HELEN"; div_html.appendChild(div_html2)
+	
+	var div_html3 = document.createElement("DIV");
+	div_html3.className = "endText2"
+	container.appendChild(div_html3)
+	
+	div_html2 = document.createElement("DIV"); div_html2.innerHTML = "WELL DONE!!"; div_html3.appendChild(div_html2) 
+	div_html2 = document.createElement("DIV"); div_html2.innerHTML = "YOU STOPPED THE PLANTS"; div_html3.appendChild(div_html2)
+	div_html2 = document.createElement("DIV"); div_html2.innerHTML = "<br>"; div_html3.appendChild(div_html2)
+	div_html2 = document.createElement("DIV"); div_html2.innerHTML = "FOR NOW..."; div_html3.appendChild(div_html2)
+	
+}
+
+
+addScore = function() {
+	score_div = document.createElement("DIV");
+	score_div.id = "score"
+	score_div.innerHTML = ("000000" + score.toString()).substr(-6,6)
+	document.getElementById("inside_container").appendChild(score_div)
+}
+
+increaseScore = function(increase, top, left) {
+	score += increase
+	score_div = document.getElementById("score")
+	if (score >= 0) {
+		score_div.innerHTML = ("000000" + score.toString()).substr(-6,6)
+	} else {
+		score_div.innerHTML = "-" + ("00000" + (-1*score).toString()).substr(-5,5)
+	}
+	
+
+	score_div = document.createElement("DIV");
+	this_score_id = "score_" + score_id.toString()
+	score_id += 1
+	score_div.id = this_score_id
+	score_div.className = "score_increase"
+	score_div.style.top = top
+	score_div.style.left = left
+	score_div.innerHTML = increase
+	document.getElementById("inside_container").appendChild(score_div)
+	
+	setTimeout(function(id) {el = document.getElementById(id); if (el) {el.remove()}}, 1900, this_score_id)
+}
+
+playIntro = function() {
+	var background_div = document.createElement("DIV");
+	background_div.className = "startingOverlay"
+	document.getElementById("inside_container").appendChild(background_div)
+	
+	skip_div = document.createElement("DIV");
+	skip_div.id = "skip_text"
+	skip_div.className = "skipText"
+	skip_div.innerHTML = "SKIP"
+	background_div.appendChild(skip_div)
+	document.getElementById('skip_text').addEventListener('click', skipIntro)
+	
+	introText1 = document.createElement("DIV");
+	introText1.className = "introText"
+	introText1.innerHTML = "JULY 2020..."
+	introText1.style.top = "5%"
+	introText1.style.left = "5%" 
+	document.getElementById("inside_container").appendChild(introText1)
+	
+	introText2 = document.createElement("DIV");
+	introText2.className = "introText"
+	introText2.innerHTML = "CORONAVIRUS HAS MUTATED TO CORRUPT PLANTS..."
+	introText2.style.top = "15%"
+	introText2.style.left = "5%" 
+	
+	
+	introText3 = document.createElement("DIV");
+	introText3.className = "introText"
+	introText3.innerHTML = "THESE MUTATIONS ARE WREAKING HAVOC IN GARDENS EVERYWHERE..."
+	introText3.style.top = "30%"
+	introText3.style.left = "5%" 
+	
+	introText4 = document.createElement("DIV");
+	introText4.className = "introText"
+	introText4.innerHTML = "ONLY ONE PERSON HAS THE PRUNING SKILLS TO SAVE THE DAY..."
+	introText4.style.top = "48%"
+	introText4.style.left = "5%" 
+
+	
+	
+	intro_timer0 = setTimeout((el) => {document.getElementById("inside_container").appendChild(el)}, 5000, introText2)
+	intro_timer1 = setTimeout((el) => {document.getElementById("inside_container").appendChild(el)}, 10000, introText3)
+	intro_timer2 = setTimeout((el) => {document.getElementById("inside_container").appendChild(el)}, 15000, introText4)
+	intro_timer3 = setTimeout(startMenu, 20000)
+	
+	
+}
+
+skipIntro = function() {
+	document.getElementById('skip_text').removeEventListener('click', skipIntro)
+	
+	cleanUp()
+	clearTimeout(intro_timer0)
+	clearTimeout(intro_timer1)
+	clearTimeout(intro_timer2)
+	clearTimeout(intro_timer3)
+	startMenu()
+	
+	
+}
+
+startMenu = function() {
+	cleanUp()
+	container = document.getElementById("inside_container")
+	
+	document.getElementById('music').currentTime = 0;
+	document.getElementById('music').play();
+	
+	var image_html = document.createElement("IMG");
+	image_html.src = "./front_image.png"
+	image_html.className = "startImage"
+	container.appendChild(image_html)
+	
+	var image_html2 = document.createElement("IMG");
+	image_html2.src = "./title_text.png"
+	image_html2.className = "title_image"
+	container.appendChild(image_html2)
+	
+	var start_html = document.createElement("IMG");
+	start_html.id = "start_menu"
+	start_html.src = "./press_start.png"
+	start_html.className = "press_start"
+	start_html.style.zIndex = 500
+	container.appendChild(start_html)
+	
+	var image_html3 = document.createElement("IMG");
+	image_html3.src = "./arrow_keys_new.png"
+	image_html3.className = "arrowKeys"
+	container.appendChild(image_html3)
+	
+	var image_html4 = document.createElement("IMG");
+	image_html4.src = "./space_key.png"
+	image_html4.className = "spaceBar"
+	container.appendChild(image_html4)
+	
+	var introText5 = document.createElement("DIV");
+	introText5.className = "introText"
+	introText5.innerHTML = "MOVE!"
+	introText5.style.top = "80%"
+	introText5.style.left = "19%" 
+	container.appendChild(introText5)
+	
+	var introText5 = document.createElement("DIV");
+	introText5.className = "introText"
+	introText5.innerHTML = "SNIP!"
+	introText5.style.top = "80%"
+	introText5.style.left = "68%" 
+	container.appendChild(introText5)
+	
+	var introText6 = document.createElement("DIV");
+	introText6.className = "introText"
+	introText6.innerHTML = "PROTECT THE FLOWERS!!!"
+	introText6.style.top = "90%"
+	introText6.style.left = "13%" 
+	container.appendChild(introText6)
+	
+	
+	
+	document.addEventListener('keypress', startGameKeypress)
+	document.getElementById('start_menu').addEventListener('click', startGame)
+	
+	
+}
+
+startGameKeypress = function(e) {
+
+	if (e.key == " ") {
+		e.preventDefault()
+		startGame()
+	}
+}
+
+startGame = function() {
+	document.getElementById('start_menu').removeEventListener('click', startGame)
+	document.removeEventListener('keypress', startGameKeypress)
+	cleanUp()
+	
+	flower_id_no = 0
+	flower_list = []
+	score = 0
+	score_id = 0
+	score = 0
+	survivors = 0
+	prevent_snipping = false  
+
+
+	addScore()
+	makeFlowers()
+	makeLevelEnd()
+	
+	container = document.getElementById("inside_container")
+	mum_character = new MumCharacter("mum", container, "38%", "41%", "20%", "20%")
+	document.addEventListener("keydown", buttonController)
+
+}
+	
+
+cleanUp = function() {
+	container = document.getElementById("inside_container")
+	
+	for (var i = 0; i < flower_list.length; i++) {
+		if (flower_list[i].moving_track) {clearTimeout(flower_list[i].moving_track)}
+	}
+	clearTimeout(next_level)
+	clearTimeout(checkEndGame_timer)
+	clearTimeout(endGame_timer1)
+	clearTimeout(endGame_timer2)
+	
+	document.removeEventListener("keydown", buttonController)
+		
+	container.innerHTML = ""
+}
+
+var card_open = false
+
+var card = document.getElementById('card'),
+	openB = document.getElementById('open'),
+	closeB = document.getElementById('close'),
+	timer = null,
+	increment = null;
+  
+  
+openB.addEventListener('click', function () {
+	
+	card.setAttribute('class', 'open-half');
+	if (timer) clearTimeout(timer);
+	timer = setTimeout(function () {
+		card.setAttribute('class', 'open-fully');
+		document.getElementById('frontimage').style.display = "none";
+		timer = null;
+		
+		card_open = true
+		
+		playIntro()
+		
+	}, 1000);
+});
+
+closeB.addEventListener('click', function () {
+
+	card.setAttribute('class', 'close-half');
+	
+	cleanUp()
+	
+	if (timer) clearTimeout(timer);
+	if (increment) clearTimeout(increment);
+	timer = setTimeout(function () {
+		card.setAttribute('class', '');
+		timer = null;
+		mum_character = null
+		document.getElementById('inside_container').innerHTML = ''
+		document.removeEventListener("keydown", buttonController)
+		document.getElementById('frontimage').style.display = "block";
+		
+		document.getElementById('music').pause();
+		
+		
+		
+		card_open = false
+		
+  
+	}, 1000);
+	
+});
+</script>
+</body>
+</html>
