@@ -1,0 +1,769 @@
+<html>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+body {
+  background: #E5E5E5;
+  background-image: url("https://i.imgur.com/vmJfoBK.png");
+  padding: 50px;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
+
+#card, #card-front, #card-inside {
+  height: 600px;
+}
+
+.wrap {
+    padding: 1.5em 2.5em;
+    height: 100%;
+}
+#card-front, #card-inside {
+  width: 70%;
+  -webkit-box-shadow: 2px 2px 30px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .5);
+  -moz-box-shadow: 2px 2px 30px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .5);
+  box-shadow: 2px 2px 30px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .5);
+  position: absolute;
+  left: 50%;
+  top: 5%;
+}
+
+
+#card-inside .wrap {
+    background: #FFFFFF;
+    -webkit-box-shadow: inset 2px 0 1px rgba(0, 0, 0, .05);
+    -moz-box-shadow: inset 2px 0 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 2px 0 1px rgba(0, 0, 0, .05);
+}
+#card {
+    max-width: 960px;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    perspective: 5000px;
+    -moz-perspective: 5000px;
+    -webkit-perspective: 5000px;
+    position: relative;
+}
+
+
+#card-inside {
+	background-color: #FFFFFF;
+}
+
+p {
+    margin-top: 1em;
+}
+
+p:first-child {
+    margin-top: 0;
+}
+
+p.signed {
+    margin-top: 1.5em;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#card-front {
+    background-color: #c2760c;
+            transform-origin: left;
+       -moz-transform-origin: left;
+    -webkit-transform-origin: left;
+            transition:         transform 1s linear;
+       -moz-transition:    -moz-transform 1s linear;
+    -webkit-transition: -webkit-transform 1s linear;
+    position: relative;
+}
+
+#card-front .wrap {
+            transition: background 1s linear;
+       -moz-transition: background 1s linear;
+    -webkit-transition: background 1s linear;
+}
+
+#card-front button {
+  position: absolute;
+  bottom: 1em;
+  right: -12px;
+  background: #F44;
+  color: #FFF;
+  font-family: 'Nobile', sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.5em;
+  padding: .5em;
+  border: none;
+  cursor: pointer;
+          box-shadow: 2px 2px 3px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .4);
+     -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .4);
+  -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .4);
+}
+
+#card-front button:hover,
+#card-front button:focus {
+  background: #F22;
+}
+
+#close {
+  display: none;
+}
+
+#card.open-fully #close,
+#card-open-half #close {
+  display: inline;
+}
+
+#card.open-fully #open {
+  display: none;
+}
+
+
+#card.open-half #card-front,
+#card.close-half #card-front {
+            transform: rotateY(-90deg);
+       -moz-transform: rotateY(-90deg);
+    -webkit-transform: rotateY(-90deg);
+}
+#card.open-half #card-front .wrap {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+#card.open-fully #card-front,
+#card.close-half #card-front {
+  background: #FFEFEF;
+}
+
+#card.open-fully #card-front {
+    transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+}
+
+#card.open-fully #card-front .wrap {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#card.open-fully #card-front .wrap *,
+#card.close-half #card-front .wrap * {
+   display: none;
+}
+
+#music {
+  position: absolute;
+  left: 0%;
+  top: 90%;
+}
+
+#music2 {
+  position: absolute;
+  left: 25%;
+  top: 90%;
+}
+
+#music3 {
+  position: absolute;
+  left: 50%;
+  top: 90%;
+}
+
+#music4 {
+  position: absolute;
+  left: 75%;
+  top: 90%;
+}
+
+footer {
+  max-width: 500px;
+  margin: 40px auto;
+  font-family: 'Nobile', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #888;
+  text-align: center;
+}
+</style>
+
+</head>
+<body>
+<audio id='music' controls>
+	<source src="./Musopen_-_Morning.ogg">
+</audio>
+<audio id='music2' controls loop>
+	<source src="./Pink Panther.mp3">
+</audio>
+<audio id='music3' controls>
+	<source src="./ZeldaOcarinaOfTimeTreasureChest.mp3">
+</audio>
+<audio id='music4' controls loop>
+	<source src="./Happiness.mp3">
+</audio>
+
+
+<div id="card">
+    <div id="card-inside">
+		<div style="position: relative;top: 0%; width: 90%; height: 100%; display: block;margin-left: auto;  margin-right: auto;" id="comic_container">
+			<img src="https://i.imgur.com/hewfWFD.png" style="position: absolute;top: 10%; width: 100%; height: 80%; display: block;margin-left: auto;  margin-right: auto;" id="comic">
+			<img src="https://i.imgur.com/R4asYgI.png" style="position: absolute;top: 60%; left: 7%; width: 10%; height: 12%; z-index: 5; display: none" id="scene_lion">
+			<img src="https://i.imgur.com/KMTzoBR.png" style="position: absolute;top: 57%; left: 18%; width: 12%; height: 12%;  z-index: 5; display: none" id="scene_monkey">
+			<img src="https://i.imgur.com/KZ1QoSk.png" style="position: absolute;top: 57%; left: 30%; width: 18%; height: 18%;  z-index: 6; display: none" id="scene_cake">
+			<img src="https://i.imgur.com/cSLoBxo.png" style="position: absolute;top: 58%; left: 50%; width: 10%; height: 12%; z-index: 5; display: none" id="scene_alex">
+			<img src="https://i.imgur.com/UPchWOc.png" style="position: absolute;top: 62%; left: 68%; width: 10%; height: 12%; z-index: 5; display: none" id="scene_bodie">
+			<img src="https://i.imgur.com/GmCmc1m.png" style="position: absolute;top: 50%; left: 80%; width: 12%; height: 18%; z-index: 5; display: none" id="scene_pig">
+			<div style="position: absolute;top: 50%; left: 80%; width: 12%; height: 9%; z-index: 5; display: none" id="scene_hat"></div>
+			
+			<img src="https://i.imgur.com/RIOYQu0.png" style="position: absolute;top: 30%; left: 10%; width: 80%; height: 20%; z-index: 6; display: none" id="scene_lion_text">
+			<img src="https://i.imgur.com/GLSWBLM.png" style="position: absolute;top: 30%; left: 10%; width: 80%; height: 20%; z-index: 6; display: none" id="scene_monkey_text">
+			<img src="https://i.imgur.com/6snRMl2.png" style="position: absolute;top: 30%; left: 10%; width: 80%; height: 20%; z-index: 6; display: none" id="scene_cake_text">
+			<img src="https://i.imgur.com/h99esXE.png" style="position: absolute;top: 30%; left: 10%; width: 80%; height: 20%; z-index: 6; display: none" id="scene_alex_text">
+			<img src="https://i.imgur.com/zNIw8Yw.png" style="position: absolute;top: 30%; left: 10%; width: 80%; height: 20%; z-index: 6; display: none" id="scene_bodie_text">
+			<img src="https://i.imgur.com/ZwvMEQC.png" style="position: absolute;top: 30%; left: 10%; width: 80%; height: 20%; z-index: 6; display: none" id="scene_pig_text">
+			
+			<img src="https://i.imgur.com/4OaDbiH.png" style="position: absolute;top: 55%; left: 2%; width: 20%; height: 4%; z-index: 6; display: none" id="scene_lion_tag">
+			<img src="https://i.imgur.com/OZewJfw.png" style="position: absolute;top: 52%; left: 15%; width: 24%; height: 4%; z-index: 6; display: none" id="scene_monkey_tag">
+			<img src="https://i.imgur.com/Gy9ZNpI.png" style="position: absolute;top: 52%; left: 27%; width: 24%; height: 4%; z-index: 6; display: none" id="scene_cake_tag">
+			<img src="https://i.imgur.com/urAfXGW.png" style="position: absolute;top: 54%; left: 45%; width: 20%; height: 4%; z-index: 6; display: none" id="scene_alex_tag">
+			<img src="https://i.imgur.com/6H2vAdB.png" style="position: absolute;top: 58%; left: 63%; width: 20%; height: 4%; z-index: 6; display: none" id="scene_bodie_tag">
+			<img src="https://i.imgur.com/C9MkndO.png" style="position: absolute;top: 46%; left: 65%; width: 35%; height: 4%; z-index: 6; display: none" id="scene_pig_tag">
+			<img src="https://i.imgur.com/qOPPMFf.png" style="position: absolute;top: 52%; left: 41%; width: 40%; height: 4%; z-index: 6; display: none" id="scene_hat_tag">
+		</div>
+		
+    </div>
+
+    <div id="card-front">
+	  <img src="https://i.imgur.com/9KvzSg0.png" style="position: absolute; top: 12.5%; left: 5%; width:90%; height: 75%;display: block;margin-left: auto;  margin-right: auto;" id="frontimage">
+      <button id="open">&gt;</button>
+      <button id="close">&lt;</button>
+    </div>
+	
+</div>
+
+
+
+
+  
+<script type="text/javascript">
+
+
+
+(function() {
+  comic_images = ["https://i.imgur.com/hewfWFD.png", 
+					"https://i.imgur.com/xs2RAfy.png", 
+					"https://i.imgur.com/G9HRLU5.png", 
+					"https://i.imgur.com/qWdWPPJ.png",
+					"https://i.imgur.com/G9HRLU5.png", 
+					"https://i.imgur.com/qWdWPPJ.png",
+					"https://i.imgur.com/G9HRLU5.png", 
+					"https://i.imgur.com/qWdWPPJ.png",
+					"https://i.imgur.com/BRe84HN.png",
+					"https://i.imgur.com/EEnVPUN.png",
+					"https://i.imgur.com/BRe84HN.png",
+					"https://i.imgur.com/EEnVPUN.png",
+					"https://i.imgur.com/BRe84HN.png",
+					"https://i.imgur.com/EEnVPUN.png",
+					"https://i.imgur.com/psl9nJP.png",
+					"https://i.imgur.com/7CfkdOw.png",
+					"https://i.imgur.com/9LSTgAh.png",
+					"https://i.imgur.com/QMXIKeX.png",
+					"https://i.imgur.com/1Se7KBa.png",
+					];
+					
+  comic_times = [6000,
+				 6000,
+				 1000,
+				 1000,
+				 1000,
+				 1000,
+				 1000,
+				 1000,
+				 1000,
+				 1000,
+				 1000,
+				 1000,
+				 1000,
+				 1000,
+				 10000,
+				 10,
+				 6400,
+				 5000,
+				 5000]
+				 
+  comic_vert_offset = ["15%",
+				 "10%",
+				 "10%",
+				 "10%",
+				 "10%",
+				 "10%",
+				 "10%",
+				 "10%",
+				 "10%",
+				 "10%",
+				 "10%",
+				 "10%",
+				 "10%",
+				 "10%",
+				 "10%",
+				 "20%",
+				 "15%",
+				 "10%"]
+				 
+  comic_height_percent = ["80%",
+				 "80%",
+				 "76.79%",
+				 "76.79%",
+				 "76.79%",
+				 "76.79%",
+				 "76.79%",
+				 "76.79%",
+				 "80%",
+				 "80%",
+				 "80%",
+				 "80%",
+				 "80%",
+				 "80%",
+				 "80%",
+				 "60%",
+				 "70%",
+				 "80%"]
+				 
+  comic_image = 0;
+
+  
+  var card = document.getElementById('card'),
+      openB = document.getElementById('open'),
+      closeB = document.getElementById('close'),
+      timer = null,
+	  increment = null;
+	  
+	  
+  var lion_worried_bool = false
+  switch_lion_animation = function() {
+	if (lion_worried_bool) {
+		lion_worried_bool = false
+		document.getElementById('scene_lion').src = "https://i.imgur.com/R4asYgI.png";
+		document.removeEventListener('click', lionClickOff)
+		document.getElementById('scene_lion_text').style.display = "none";
+		document.getElementById('scene_lion').addEventListener('click', switch_lion_animation)
+	} else {
+		lion_worried_bool = true
+		document.getElementById('scene_lion').src = "https://i.imgur.com/CmzuKQe.png";
+		document.addEventListener('click', lionClickOff)
+		document.getElementById('scene_lion_text').style.display = "block";
+		document.getElementById('scene_lion').removeEventListener('click', switch_lion_animation)
+	}
+  }
+  
+  lionClickOff = function(e) {
+		if (e.target.id != "scene_lion" && e.target.id != "scene_lion_text") {
+			switch_lion_animation()
+		}
+  }
+
+  lionOver = function(e) {
+	document.getElementById('scene_lion_tag').style.display = "block"
+  }
+  
+  lionOut = function(e) {
+	document.getElementById('scene_lion_tag').style.display = "none"
+  }
+  
+  var monkey_idle = null
+  monkey_idle_images = ["https://i.imgur.com/KMTzoBR.png", "https://i.imgur.com/gcg3lDn.png", "https://i.imgur.com/tbxJ5JO.png", "https://i.imgur.com/5rDK2Ci.png", "https://i.imgur.com/b0I56UD.png", "https://i.imgur.com/yqb0zLM.png", "https://i.imgur.com/5rDK2Ci.png", "https://i.imgur.com/tbxJ5JO.png", "https://i.imgur.com/gcg3lDn.png", "https://i.imgur.com/KMTzoBR.png"]
+  monkey_idle_image = 0
+  monkey_idle_animation = function() {
+	monkey_idle_image += 1;
+	if (monkey_idle_image < monkey_idle_images.length) {
+		document.getElementById('scene_monkey').src = monkey_idle_images[monkey_idle_image];
+	}
+	if (monkey_idle_image == 9) {
+		monkey_idle_image = 0
+		if (comic_image == 15) {
+			monkey_idle = setTimeout(monkey_idle_animation, 1500);
+		}
+	} else {
+		if (comic_image == 15) {
+			monkey_idle = setTimeout(monkey_idle_animation, 500);
+		}
+		
+	}
+  }
+  
+  var monkey_worried_bool = false
+  switch_monkey_animation = function() {
+	if (monkey_worried_bool) {
+		monkey_idle_image = 0
+		monkey_worried_bool = false
+		monkey_idle = setTimeout(monkey_idle_animation, 10)
+		document.removeEventListener('click', monkeyClickOff)
+		document.getElementById('scene_monkey_text').style.display = "none";
+		document.getElementById('scene_monkey').addEventListener('click', switch_monkey_animation)
+	} else {
+		if (monkey_idle) clearTimeout(monkey_idle)
+		monkey_idle_image = 0
+		monkey_worried_bool = true
+		document.getElementById('scene_monkey').src = "https://i.imgur.com/KZMwEnT.png";
+		document.addEventListener('click', monkeyClickOff)
+		document.getElementById('scene_monkey_text').style.display = "block";
+		document.getElementById('scene_monkey').removeEventListener('click', switch_monkey_animation)
+	}
+  }
+  
+  monkeyClickOff = function(e) {
+		if (e.target.id != "scene_monkey" && e.target.id != "scene_monkey_text") {
+			switch_monkey_animation()
+		}
+  }
+  
+  monkeyOver = function(e) {
+	document.getElementById('scene_monkey_tag').style.display = "block"
+  }
+  
+  monkeyOut = function(e) {
+	document.getElementById('scene_monkey_tag').style.display = "none"
+  }
+  
+  var cake_worried_bool = false
+  switch_cake_animation = function() {
+	if (cake_worried_bool) {
+		cake_worried_bool = false
+		document.removeEventListener('click', cakeClickOff)
+		document.getElementById('scene_cake_text').style.display = "none";
+		document.getElementById('scene_cake').addEventListener('click', switch_cake_animation)
+	} else {
+		cake_worried_bool = true
+		document.addEventListener('click', cakeClickOff)
+		document.getElementById('scene_cake_text').style.display = "block";
+		document.getElementById('scene_cake').removeEventListener('click', switch_cake_animation)
+	}
+  }
+  
+  cakeClickOff = function(e) {
+		if (e.target.id != "scene_cake" && e.target.id != "scene_cake_text") {
+			switch_cake_animation()
+		}
+  }
+  
+  cakeOver = function(e) {
+	document.getElementById('scene_cake_tag').style.display = "block"
+  }
+  
+  cakeOut = function(e) {
+	document.getElementById('scene_cake_tag').style.display = "none"
+  }
+  
+  var alex_worried_bool = false
+  switch_alex_animation = function() {
+	if (alex_worried_bool) {
+		alex_worried_bool = false
+		document.getElementById('scene_alex').src = "https://i.imgur.com/cSLoBxo.png";
+		document.removeEventListener('click', alexClickOff)
+		document.getElementById('scene_alex_text').style.display = "none";
+		document.getElementById('scene_alex').addEventListener('click', switch_alex_animation)
+	} else {
+		alex_worried_bool = true
+		document.getElementById('scene_alex').src = "https://i.imgur.com/2vhNRfk.png";
+		document.addEventListener('click', alexClickOff)
+		document.getElementById('scene_alex_text').style.display = "block";
+		document.getElementById('scene_alex').removeEventListener('click', switch_alex_animation)
+	}
+  }
+  
+  alexClickOff = function(e) {
+		if (e.target.id != "scene_alex" && e.target.id != "scene_alex_text") {
+			switch_alex_animation()
+		}
+  }
+  
+  alexOver = function(e) {
+	document.getElementById('scene_alex_tag').style.display = "block"
+  }
+  
+  alexOut = function(e) {
+	document.getElementById('scene_alex_tag').style.display = "none"
+  }
+  
+  var bodie_worried_bool = false
+  switch_bodie_animation = function() {
+	if (bodie_worried_bool) {
+		bodie_worried_bool = false
+		document.getElementById('scene_bodie').src = "https://i.imgur.com/UPchWOc.png";
+		document.removeEventListener('click', bodieClickOff)
+		document.getElementById('scene_bodie_text').style.display = "none";
+		document.getElementById('scene_bodie').addEventListener('click', switch_bodie_animation)
+	} else {
+		bodie_worried_bool = true
+		document.getElementById('scene_bodie').src = "https://i.imgur.com/Gcw0HI9.png";
+		document.addEventListener('click', bodieClickOff)
+		document.getElementById('scene_bodie_text').style.display = "block";
+		document.getElementById('scene_bodie').removeEventListener('click', switch_bodie_animation)
+	}
+  }
+  
+  bodieClickOff = function(e) {
+		if (e.target.id != "scene_bodie" && e.target.id != "scene_bodie_text") {
+			switch_bodie_animation()
+		}
+  }
+  
+  bodieOver = function(e) {
+	document.getElementById('scene_bodie_tag').style.display = "block"
+  }
+  
+  bodieOut = function(e) {
+	document.getElementById('scene_bodie_tag').style.display = "none"
+  }
+  
+  var pig_idle = null
+  pig_idle_images = ["https://i.imgur.com/GmCmc1m.png", "https://i.imgur.com/VWf7Gyr.png", "https://i.imgur.com/T4B0bZx.png", "https://i.imgur.com/qsguhph.png", "https://i.imgur.com/zmQSvoG.png", "https://i.imgur.com/hbQ4Cvw.png", "https://i.imgur.com/tVdFW8Z.png", "https://i.imgur.com/T4B0bZx.png", "https://i.imgur.com/VWf7Gyr.png", "https://i.imgur.com/GmCmc1m.png"]
+  pig_idle_image = 0
+  pig_idle_animation = function() {
+	pig_idle_image += 1;
+	if (pig_idle_image < pig_idle_images.length) {
+		document.getElementById('scene_pig').src = pig_idle_images[pig_idle_image];
+	}
+	if (pig_idle_image == 9) {
+		pig_idle_image = 0
+		if (comic_image == 15) {
+			pig_idle = setTimeout(pig_idle_animation, 2000);
+		}
+	} else {
+		if (comic_image == 15) {
+			pig_idle = setTimeout(pig_idle_animation, 500);
+		}
+	}
+  }
+  
+  var pig_worried_bool = false
+  var pig_worried = null
+  pig_worried_images = ["https://i.imgur.com/GmCmc1m.png", "https://i.imgur.com/HfBHpR4.png", "https://i.imgur.com/GmCmc1m.png", "https://i.imgur.com/G0HwHuW.png", "https://i.imgur.com/GmCmc1m.png"]
+  pig_worried_image = 0
+  pig_worried_animation = function() {
+	pig_worried_image += 1;
+	if (pig_worried_image < pig_worried_images.length) {
+		document.getElementById('scene_pig').src = pig_worried_images[pig_worried_image];
+	}
+	if (pig_worried_image == 4) {
+		pig_worried_image = 0
+	}
+	if (comic_image == 15) {
+		pig_worried = setTimeout(pig_worried_animation, 500);
+	}
+  }
+  
+  
+  switch_pig_animation = function() {
+	if (pig_worried_bool) {
+		if (pig_worried) clearTimeout(pig_worried)
+		pig_worried_image = 0
+		pig_idle_image = 0
+		pig_worried_bool = false
+		pig_idle = setTimeout(pig_idle_animation, 10)
+		document.removeEventListener('click', pigClickOff)
+		document.getElementById('scene_pig_text').style.display = "none";
+		document.getElementById('scene_pig').addEventListener('click', switch_pig_animation)
+		document.getElementById('scene_hat').style.display = "none"
+		document.getElementById('scene_hat_tag').style.display = "none"
+	} else {
+		if (pig_idle) clearTimeout(pig_idle)
+		pig_worried_image = 0
+		pig_idle_image = 0
+		pig_worried_bool = true
+		pig_worried = setTimeout(pig_worried_animation, 10)
+		document.addEventListener('click', pigClickOff)
+		document.getElementById('scene_pig_text').style.display = "block";
+		document.getElementById('scene_pig').removeEventListener('click', switch_pig_animation)
+		document.getElementById('scene_hat').style.display = "block"
+	}
+  }
+  
+  pigClickOff = function(e) {
+		if (e.target.id != "scene_pig" && e.target.id != "scene_pig_text") {
+			switch_pig_animation()
+		}
+  }
+  
+  pigOver = function(e) {
+	document.getElementById('scene_pig_tag').style.display = "block"
+  }
+  
+  pigOut = function(e) {
+	document.getElementById('scene_pig_tag').style.display = "none"
+  }
+  
+  hatOver = function(e) {
+	document.getElementById('scene_hat_tag').style.display = "block"
+  }
+  
+  hatOut = function(e) {
+	document.getElementById('scene_hat_tag').style.display = "none"
+  }
+  
+  hatClick = function(e) {
+    document.getElementById('scene_lion').style.display = "none";
+	document.getElementById('scene_monkey').style.display = "none";
+	document.getElementById('scene_cake').style.display = "none";
+	document.getElementById('scene_alex').style.display = "none";
+	document.getElementById('scene_bodie').style.display = "none";
+	document.getElementById('scene_pig').style.display = "none";
+	
+	document.getElementById('scene_pig_text').style.display = "none";
+	
+	document.getElementById('scene_hat_tag').style.display = "none"
+	document.getElementById('scene_pig_tag').style.display = "none"
+	
+    if (monkey_idle) clearTimeout(monkey_idle)
+    if (pig_worried) clearTimeout(pig_worried)
+	if (pig_idle) clearTimeout(pig_idle)
+	monkey_idle = null
+	pig_worried = null
+	pig_idle = null
+	
+	document.getElementById('scene_lion').removeEventListener('click', switch_lion_animation)
+	document.getElementById('scene_lion').removeEventListener('mouseover', lionOver)
+	document.getElementById('scene_lion').removeEventListener('mouseout', lionOut)
+	
+	document.getElementById('scene_monkey').removeEventListener('click', switch_monkey_animation)
+	document.getElementById('scene_monkey').removeEventListener('mouseover', monkeyOver)
+	document.getElementById('scene_monkey').removeEventListener('mouseout', monkeyOut)
+	
+	document.getElementById('scene_cake').removeEventListener('click', switch_cake_animation)
+	document.getElementById('scene_cake').removeEventListener('mouseover', cakeOver)
+	document.getElementById('scene_cake').removeEventListener('mouseout', cakeOut)
+	
+	document.getElementById('scene_alex').removeEventListener('click', switch_alex_animation)
+	document.getElementById('scene_alex').removeEventListener('mouseover', alexOver)
+	document.getElementById('scene_alex').removeEventListener('mouseout', alexOut)
+
+	document.getElementById('scene_bodie').removeEventListener('click', switch_bodie_animation)
+	document.getElementById('scene_bodie').removeEventListener('mouseover', bodieOver)
+	document.getElementById('scene_bodie').removeEventListener('mouseout', bodieOut)
+	
+	document.getElementById('scene_pig').removeEventListener('click', switch_pig_animation)
+	document.getElementById('scene_pig').removeEventListener('mouseover', pigOver)
+	document.getElementById('scene_pig').removeEventListener('mouseout', pigOut)
+	
+	document.getElementById('scene_hat').removeEventListener('click', hatClick)
+	document.getElementById('scene_hat').removeEventListener('mouseover', hatOver)
+	document.getElementById('scene_hat').removeEventListener('mouseout', hatOut)
+	
+	document.getElementById('music2').pause();
+	document.getElementById('music3').play();
+	increment_comic()
+  }
+  
+  
+  increment_comic = function() {
+    console.log("called")
+	comic_image += 1;
+	if (comic_image < comic_images.length) {
+		document.getElementById('comic').style.top = comic_vert_offset[comic_image];
+		document.getElementById('comic').style.height = comic_height_percent[comic_image];
+		document.getElementById('comic').src = comic_images[comic_image];
+	}
+	if (comic_image == 14) {
+		document.getElementById('music').pause();
+		document.getElementById('music2').currentTime = 8;
+		document.getElementById('music2').play();
+	}
+	
+	if (comic_image == 15) {
+		document.getElementById('scene_lion').style.display = "block";
+		document.getElementById('scene_monkey').style.display = "block";
+		document.getElementById('scene_cake').style.display = "block";
+		document.getElementById('scene_alex').style.display = "block";
+		document.getElementById('scene_bodie').style.display = "block";
+		document.getElementById('scene_pig').style.display = "block";
+		
+		document.getElementById('scene_lion').addEventListener('click', switch_lion_animation)
+		document.getElementById('scene_lion').addEventListener('mouseover', lionOver)
+		document.getElementById('scene_lion').addEventListener('mouseout', lionOut)
+		
+		monkey_idle = setTimeout(monkey_idle_animation, 1500);
+		document.getElementById('scene_monkey').addEventListener('click', switch_monkey_animation)
+		document.getElementById('scene_monkey').addEventListener('mouseover', monkeyOver)
+		document.getElementById('scene_monkey').addEventListener('mouseout', monkeyOut)
+		
+		document.getElementById('scene_cake').addEventListener('click', switch_cake_animation)
+		document.getElementById('scene_cake').addEventListener('mouseover', cakeOver)
+		document.getElementById('scene_cake').addEventListener('mouseout', cakeOut)
+		
+		document.getElementById('scene_alex').addEventListener('click', switch_alex_animation)
+		document.getElementById('scene_alex').addEventListener('mouseover', alexOver)
+		document.getElementById('scene_alex').addEventListener('mouseout', alexOut)
+
+		document.getElementById('scene_bodie').addEventListener('click', switch_bodie_animation)
+		document.getElementById('scene_bodie').addEventListener('mouseover', bodieOver)
+		document.getElementById('scene_bodie').addEventListener('mouseout', bodieOut)
+		
+		pig_idle = setTimeout(pig_idle_animation, 2000);
+		document.getElementById('scene_pig').addEventListener('click', switch_pig_animation)
+		document.getElementById('scene_pig').addEventListener('mouseover', pigOver)
+		document.getElementById('scene_pig').addEventListener('mouseout', pigOut)
+		
+		document.getElementById('scene_hat').addEventListener('click', hatClick)
+		document.getElementById('scene_hat').addEventListener('mouseover', hatOver)
+		document.getElementById('scene_hat').addEventListener('mouseout', hatOut)
+	}
+	
+	
+	if (comic_image != 15 && comic_image != 18) {
+		increment = setTimeout(increment_comic, comic_times[comic_image]);
+	}
+	
+	if (comic_image == 18){
+	  document.getElementById('music3').pause();
+	  document.getElementById('music4').play();
+	}
+	
+  }
+  
+
+  
+	  
+  openB.addEventListener('click', function () {
+	document.getElementById('music').play();
+    card.setAttribute('class', 'open-half');
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(function () {
+      card.setAttribute('class', 'open-fully');
+	  document.getElementById('frontimage').style.display = "none";
+      timer = null;
+	  increment = setTimeout(increment_comic, comic_times[0]);
+    }, 1000);
+  });
+
+  closeB.addEventListener('click', function () {
+    
+    card.setAttribute('class', 'close-half');
+    if (timer) clearTimeout(timer);
+	if (increment) clearTimeout(increment);
+    timer = setTimeout(function () {
+      card.setAttribute('class', '');
+      timer = null;
+	  document.getElementById('frontimage').style.display = "block";
+	  document.getElementById('music').pause();
+	  document.getElementById('music2').pause();
+	  document.getElementById('music3').pause();
+	  document.getElementById('music4').pause();
+      document.getElementById('music').currentTime = 0;
+	  document.getElementById('music2').currentTime = 0;
+	  document.getElementById('music3').currentTime = 0;
+	  document.getElementById('music4').currentTime = 0;
+	  document.getElementById('comic').src = comic_images[0];
+	  comic_image = 0;
+	  
+	  document.removeEventListener('click', monkeyClickOff)
+    }, 1000);
+  });
+
+}());
+</script>
+</body>
+</html>

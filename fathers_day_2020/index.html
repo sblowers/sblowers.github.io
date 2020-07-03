@@ -1,0 +1,680 @@
+<html>
+<head>
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Press+Start+2P">
+<style>
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+body {
+  background: #E5E5E5;
+  background-image: url("https://i.imgur.com/RA9EYhW.jpg");
+  padding: 50px;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
+
+#card, #card-front, #card-inside {
+  height: 600px;
+}
+
+.wrap {
+    padding: 1.5em 2.5em;
+    height: 100%;
+}
+#card-front, #card-inside {
+  width: 70%;
+  -webkit-box-shadow: 2px 2px 30px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .5);
+  -moz-box-shadow: 2px 2px 30px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .5);
+  box-shadow: 2px 2px 30px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .5);
+  position: absolute;
+  left: 50%;
+  top: 5%;
+}
+
+
+#card-inside .wrap {
+    background: #FFFFFF;
+    -webkit-box-shadow: inset 2px 0 1px rgba(0, 0, 0, .05);
+    -moz-box-shadow: inset 2px 0 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 2px 0 1px rgba(0, 0, 0, .05);
+}
+#card {
+    max-width: 960px;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    perspective: 5000px;
+    -moz-perspective: 5000px;
+    -webkit-perspective: 5000px;
+    position: relative;
+}
+
+
+#card-inside {
+	background-color: #FFFFFF;
+}
+
+p {
+    margin-top: 1em;
+}
+
+p:first-child {
+    margin-top: 0;
+}
+
+p.signed {
+    margin-top: 1.5em;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#card-front {
+    background-color: #aaaaaa;
+            transform-origin: left;
+       -moz-transform-origin: left;
+    -webkit-transform-origin: left;
+            transition:         transform 1s linear;
+       -moz-transition:    -moz-transform 1s linear;
+    -webkit-transition: -webkit-transform 1s linear;
+    position: relative;
+}
+
+#card-front .wrap {
+            transition: background 1s linear;
+       -moz-transition: background 1s linear;
+    -webkit-transition: background 1s linear;
+}
+
+#card-front button {
+  position: absolute;
+  bottom: 1em;
+  right: -12px;
+  background: #F44;
+  color: #FFF;
+  font-family: 'Nobile', sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.5em;
+  padding: .5em;
+  border: none;
+  cursor: pointer;
+          box-shadow: 2px 2px 3px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .4);
+     -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .4);
+  -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .4);
+}
+
+#card-front button:hover,
+#card-front button:focus {
+  background: #F22;
+}
+
+#close {
+  display: none;
+}
+
+#card.open-fully #close,
+#card-open-half #close {
+  display: inline;
+}
+
+#card.open-fully #open {
+  display: none;
+}
+
+
+#card.open-half #card-front,
+#card.close-half #card-front {
+            transform: rotateY(-90deg);
+       -moz-transform: rotateY(-90deg);
+    -webkit-transform: rotateY(-90deg);
+}
+#card.open-half #card-front .wrap {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+#card.open-fully #card-front,
+#card.close-half #card-front {
+  background: #FFEFEF;
+}
+
+#card.open-fully #card-front {
+    transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+}
+
+#card.open-fully #card-front .wrap {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#card.open-fully #card-front .wrap *,
+#card.close-half #card-front .wrap * {
+   display: none;
+}
+
+.fade-in-out {
+  animation: fadeInOut 3s infinite;
+  -webkit-animation: fadeInOut 3s infinite;
+  -moz-animation: fadeInOut 3s infinite;
+  -o-animation: fadeInOut 3s infinite;
+  -ms-animation: fadeInOut 3s infinite;
+}
+@keyframes fadeInOut {
+  0% {opacity:1;}
+  50% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeInOut {
+  0% {opacity:1;}
+  50% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeInOut {
+  0% {opacity:1;}
+  50% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeInOut {
+  0% {opacity:1;}
+  50% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeInOut {
+  0% {opacity:1;}
+  50% {opacity:0;}
+  100% {opacity:1;}
+}
+
+#music {
+  position: absolute;
+  left: 0%;
+  top: 90%;
+}
+
+#music2 {
+  position: absolute;
+  left: 25%;
+  top: 90%;
+}
+
+footer {
+  max-width: 500px;
+  margin: 40px auto;
+  font-family: 'Nobile', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #888;
+  text-align: center;
+}
+</style>
+
+</head>
+<body>
+<audio id='music' controls loop>
+	<source src="./slow-2020-06-18_-_8_Bit_Retro_Funk_-_www.FesliyanStudios.com_David_Renda.mp3">
+</audio>
+
+<audio id='seed_sound_effect'>
+	<source src="./8bitgame7.mp3">
+</audio>
+
+<audio id='water_sound_effect'>
+	<source src="./8bitgame6.mp3">
+</audio>
+
+<audio id='picking_sound_effect'>
+	<source src="./8bitgame5.mp3">
+</audio>
+
+
+<div id="card">
+    <div id="card-inside">
+		<div style="position: relative;top: 0%; width: 100%; height: 100%; display: block;margin-left: auto;  margin-right: auto; overflow: hidden;" id="comic_container">
+			<img src="https://i.imgur.com/tvgxza9.png" style="position: absolute;top: 10%; left: 5%; width: 90%; height: 80%; display: block;margin-left: auto;  margin-right: auto;" id="background">
+			<img src="https://i.imgur.com/sY149yF.png" style="position: absolute; top: 11%; width:85%; left:7.5%; height: 11%; display: block; margin-left: auto;  margin-right: auto;" id="title_menu";>
+			<img src="https://i.imgur.com/8EaF5gR.png" style="position: absolute; top: 35%;width:40%; left:30%; height: 20%; display: block; margin-left: auto;  margin-right: auto;" id="press_start"; class="fade-in-out">
+			
+			<div style="position: absolute;top: 20%; left: 15%; width: 90%; height: 5%; display: none; margin-left: auto;  margin-right: auto; font-family: 'Press Start 2P'; z-index: 20" id="score">SCORE: 000000</div>
+			<div style="position: absolute;top: 20%; left: 65%; width: 90%; height: 5%; display: none; margin-left: auto;  margin-right: auto; font-family: 'Press Start 2P'; z-index: 20" id="time">TIME: 000</div>
+			
+			<img src="https://i.imgur.com/wQXjGuM.png" style="position: absolute; top: 45%; left: 10%; height: 20%; width: 11.3%; margin-left: auto; margin-right: auto; display: none; z-index: 4;" id="allotment_dad_idle">
+			<img src="https://i.imgur.com/NJm6JJM.png" style="position: absolute; top: 45%; left: 10%; height: 20%; width: 20%; margin-left: auto; margin-right: auto; display: none; z-index: 4;" id="allotment_dad_seeds">
+			<img src="https://i.imgur.com/hBVqo63.png" style="position: absolute; top: 45%; left: 10%; height: 20%; width: 25.4%; margin-left: auto; margin-right: auto; display: none; z-index: 4;" id="allotment_dad_waters">
+			<img src="https://i.imgur.com/YFe2K1X.png" style="position: absolute; top: 45%; left: 10%; height: 20%; width: 13.5%; margin-left: auto; margin-right: auto; display: none; z-index: 4;" id="allotment_dad_picks_carrots">
+			
+			<img src="https://i.imgur.com/4NWZhWP.png" style="position: absolute; top: 63%; left: 27%; height: 10%; width: 10%; margin-left: auto; margin-right: auto; display: none; z-index: 5;" id="plot_action_1">
+			<img src="https://i.imgur.com/4NWZhWP.png" style="position: absolute; top: 64%; left: 44%; height: 10%; width: 10%; margin-left: auto; margin-right: auto; display: none; z-index: 5;" id="plot_action_2">
+			<img src="https://i.imgur.com/4NWZhWP.png" style="position: absolute; top: 63%; left: 60%; height: 10%; width: 10%; margin-left: auto; margin-right: auto; display: none; z-index: 5;" id="plot_action_3">
+			<img src="https://i.imgur.com/4NWZhWP.png" style="position: absolute; top: 72%; left: 35%; height: 10%; width: 10%; margin-left: auto; margin-right: auto; display: none; z-index: 8;" id="plot_action_4">
+			<img src="https://i.imgur.com/4NWZhWP.png" style="position: absolute; top: 73%; left: 51%; height: 10%; width: 10%; margin-left: auto; margin-right: auto; display: none; z-index: 8;" id="plot_action_5">
+			<img src="https://i.imgur.com/4NWZhWP.png" style="position: absolute; top: 72%; left: 66%; height: 10%; width: 10%; margin-left: auto; margin-right: auto; display: none; z-index: 8;" id="plot_action_6">
+			
+			<img src="https://i.imgur.com/IoC05a3.png" style="position: absolute; top: 64%; left: 23%; height: 7%; width: 5%; margin-left: auto; margin-right: auto; display: none; z-index: 4;" id="plot_label1">
+			<img src="https://i.imgur.com/IoC05a3.png" style="position: absolute; top: 64%; left: 40%; height: 7%; width: 5%; margin-left: auto; margin-right: auto; display: none; z-index: 4;" id="plot_label2">
+			<img src="https://i.imgur.com/IoC05a3.png" style="position: absolute; top: 64%; left: 55.5%; height: 7%; width: 5%; margin-left: auto; margin-right: auto; display: none; z-index: 4;" id="plot_label3">
+			<img src="https://i.imgur.com/IoC05a3.png" style="position: absolute; top: 72%; left: 30.5%; height: 7%; width: 5%; margin-left: auto; margin-right: auto; display: none; z-index: 7;" id="plot_label4">
+			<img src="https://i.imgur.com/IoC05a3.png" style="position: absolute; top: 72.5%; left: 46%; height: 7%; width: 5%; margin-left: auto; margin-right: auto; display: none; z-index: 7;" id="plot_label5">
+			<img src="https://i.imgur.com/IoC05a3.png" style="position: absolute; top: 72%; left: 61%; height: 7%; width: 5%; margin-left: auto; margin-right: auto; display: none; z-index: 7;" id="plot_label6">
+			
+			<img src="https://i.imgur.com/CliLCfP.png" style="position: absolute; top: 66.5%; left: 27%; height: 7%; width: 8%; margin-left: auto; margin-right: auto; display: none; z-index: 5;" id="plot_produce_1">
+			<img src="https://i.imgur.com/CliLCfP.png" style="position: absolute; top: 66.5%; left: 44%; height: 7%; width: 8%; margin-left: auto; margin-right: auto; display: none; z-index: 5;" id="plot_produce_2">
+			<img src="https://i.imgur.com/CliLCfP.png" style="position: absolute; top: 66.5%; left: 60%; height: 7%; width: 8%; margin-left: auto; margin-right: auto; display: none; z-index: 5;" id="plot_produce_3">
+			<img src="https://i.imgur.com/CliLCfP.png" style="position: absolute; top: 75.5%; left: 36%; height: 7%; width: 8% margin-left: auto; margin-right: auto; display: none; z-index: 8;" id="plot_produce_4">
+			<img src="https://i.imgur.com/CliLCfP.png" style="position: absolute; top: 75.5%; left: 52%; height: 7%; width: 8%; margin-left: auto; margin-right: auto; display: none; z-index: 8;" id="plot_produce_5">
+			<img src="https://i.imgur.com/CliLCfP.png" style="position: absolute; top: 75.5%; left: 67%; height: 7%; width: 8%; margin-left: auto; margin-right: auto; display: none; z-index: 8;" id="plot_produce_6">
+			
+			<div style="position: absolute;top: 16%; left: 53%; width: 90%; height: 5%; display: none; margin-left: auto;  margin-right: auto; font-family: 'Press Start 2P'; z-index: 20" id="end_screen">
+				<div>FINAL SCORE:</div>
+				<div id="final_score">000000<br></div>
+				<div><br></div>
+				<div>Well Done<br>Allotment Dad!</div>
+				<div><br>HAPPY<br>FATHER'S<br>DAY!!</div>
+			</div>
+			<img src="https://i.imgur.com/wQXjGuM.png" style="position: absolute; top: 14%; left: 6%; height: 100%; width: 50%; margin-left: auto; margin-right: auto; display: none; z-index: 4;" id="final_image">
+				
+				
+			
+
+		</div>
+		
+    </div>
+
+    <div id="card-front">
+	  <img src="https://i.imgur.com/xyPDzJ3.png" style="position: absolute; top: 5%; left: 5%; width:90%; height: 90%;display: block;margin-left: auto;  margin-right: auto;" id="frontimage">
+      <button id="open">&gt;</button>
+      <button id="close">&lt;</button>
+    </div>
+	
+</div>
+
+
+
+
+  
+<script type="text/javascript">
+
+
+
+(function() {
+
+	card_open = false
+	score = 0
+	dad_is_idle = true
+	
+	TIME_REMAINING_ORIG = 60
+	time_remaining = 60
+	
+	popup = []
+	water_timer = []
+	
+	PLOT_ACTION_ARRAY_ORIG = [0, 0, 0, 0, 0, 0]
+	plot_action_array = [0, 0, 0, 0, 0, 0]
+	
+	
+	plot_action_z_index = [6, 6, 6, 11, 11, 11]
+	
+	PLOT_SCORE_ORIG = [1000,1000,1000,1000,1000,1000]
+	plot_score = [1000,1000,1000,1000,1000,1000]
+	water_timer_color = [1,1,1,1,1,1]
+	
+	water_timer_length = [5000, 10000]
+	
+	plot_ids = ["plot_action_1", "plot_action_2", "plot_action_3", "plot_action_4", "plot_action_5", "plot_action_6"]
+	label_ids = ["plot_label1", "plot_label2", "plot_label3", "plot_label4", "plot_label5", "plot_label6"]
+	produce_ids = ["plot_produce_1", "plot_produce_2", "plot_produce_3", "plot_produce_4", "plot_produce_5", "plot_produce_6"]
+	
+	plot_seeds_top =  ["55%",  "54%", "54%", "62%", "62%", "62%"]
+	plot_seeds_left = ["12%", "28%", "45%", "20%", "36%", "51%"]
+	
+	plot_waters_top =  ["54%",  "54%", "54%", "62%", "62%", "62%"]
+	plot_waters_left = ["9%", "26%", "43%", "18%", "34%", "51%"]
+	
+	plot_picks_top =  ["53%",  "54%", "53%", "62%", "62%", "62%"]
+	plot_picks_left = ["25%", "42%", "59%", "34%", "51%", "65%"]
+
+
+	var dad_idle = null
+	dad_idle_images = ["https://i.imgur.com/wQXjGuM.png",
+						"https://i.imgur.com/6UQeoeo.png"]
+	dad_idle_image = 0
+	dad_idle_animation = function() {
+		dad_idle_image += 1;
+		if (dad_idle_image < dad_idle_images.length) {
+			document.getElementById('allotment_dad_idle').src = dad_idle_images[dad_idle_image];
+		} else {
+			dad_idle_image = 0
+			document.getElementById('allotment_dad_idle').src = dad_idle_images[dad_idle_image];
+		}
+		if (card_open) {
+			dad_idle = setTimeout(dad_idle_animation, 400);
+		}
+	}
+	var dad_seeds = null
+	dad_seeds_images = ["https://i.imgur.com/pRTuP97.png",
+						"https://i.imgur.com/NJm6JJM.png",
+						"https://i.imgur.com/pRTuP97.png",
+						"https://i.imgur.com/NJm6JJM.png",
+						"https://i.imgur.com/pRTuP97.png"]
+						
+	dad_seeds_image = 0					
+	dad_seeds_animation = function() {
+		dad_seeds_image += 1;
+		if (dad_seeds_image < dad_seeds_images.length) {
+			document.getElementById('allotment_dad_seeds').src = dad_seeds_images[dad_seeds_image];
+			if (dad_seeds_image == 1 || dad_seeds_image == 3) {
+				document.getElementById('seed_sound_effect').currentTime = 0;
+				document.getElementById('seed_sound_effect').play()
+			}
+			if (card_open) {
+				dad_seeds = setTimeout(dad_seeds_animation, 700);
+			}
+		} else {
+			dad_seeds_image = 0
+			document.getElementById('allotment_dad_seeds').style.display = "none";
+			document.getElementById('allotment_dad_idle').style.display = "block";
+			dad_is_idle = true
+		}
+
+	}
+	
+	var dad_waters = null
+	dad_waters_angles = [-5, 5, -5 ,5, -5, 5, -5, 5]
+						
+	dad_waters_angle = 0					
+	dad_waters_animation = function() {
+		dad_waters_angle += 1;
+		if (dad_waters_angle < dad_waters_angles.length) {
+			document.getElementById('allotment_dad_waters').style.transform = "rotate(" + dad_waters_angles[dad_waters_angle].toString() + "deg)";
+			if (dad_waters_angle == 1 || dad_waters_angle == 3 || dad_waters_angle == 5 || dad_waters_angle == 7) {
+				document.getElementById('water_sound_effect').currentTime = 0;
+				document.getElementById('water_sound_effect').play()
+			}
+			if (card_open) {
+				dad_waters = setTimeout(dad_waters_animation, 300);
+			}
+		} else {
+			dad_waters_angle = 0
+			document.getElementById('allotment_dad_waters').style.display = "none";
+			document.getElementById('allotment_dad_idle').style.display = "block";
+			dad_is_idle = true
+		}
+
+	}
+	
+	
+	
+	
+	popup_action = function(plot) {
+
+		if (plot_action_array[plot] == 0) {
+			plot_id = plot_ids[plot]
+			document.getElementById(plot_id).src = "https://i.imgur.com/4NWZhWP.png"
+			document.getElementById(plot_id).style.display = "block";
+			document.getElementById(plot_id).addEventListener('click', do_popup_action)
+			
+		} else if (plot_action_array[plot] >= 1 && plot_action_array[plot] < 3 ) {
+			plot_id = plot_ids[plot]
+			document.getElementById(plot_id).src = "https://i.imgur.com/sRwTC30.png"
+			document.getElementById(plot_id).style.display = "block";
+			document.getElementById(plot_id).addEventListener('click', do_popup_action)
+			
+			water_timer_color[plot] = 1
+			water_timer[plot] = setTimeout(water_timeout, water_timer_length[0], plot)
+			
+		} else {
+			produce_id = produce_ids[plot]
+			document.getElementById(produce_id).style.display = "block";
+			document.getElementById(produce_id).addEventListener('click', do_popup_action)
+		}
+	}
+	
+	water_timeout = function(plot) {
+		plot_id = plot_ids[plot]
+		if (water_timer_color[plot] == 1) {
+			document.getElementById(plot_id).src = "https://i.imgur.com/qeRKdw1.png"
+			water_timer_color[plot] += 1
+			water_timer[plot] = setTimeout(water_timeout, water_timer_length[1], plot)
+			plot_score[plot] -= 100
+			
+		} else if (water_timer_color[plot] == 2){
+			document.getElementById(plot_id).src = "https://i.imgur.com/ksy3lW1.png"
+			plot_score[plot] -= 100
+		}
+	}
+		
+	do_popup_action = function(e) {
+		if (!dad_is_idle) {return}
+		plot = parseInt(e.path[0].id.substr(-1),10)-1
+		plot_id = plot_ids[plot]
+		
+		
+		dad_is_idle = false
+		if (plot_action_array[plot] == 0) {
+			plot_id = plot_ids[plot]
+			document.getElementById(plot_id).removeEventListener('click', do_popup_action)
+			document.getElementById('allotment_dad_idle').style.display = "none";
+			document.getElementById(plot_id).style.display = "none";
+			document.getElementById(label_ids[plot]).style.display = "block";
+			document.getElementById('allotment_dad_seeds').style.top = plot_seeds_top[plot];
+			document.getElementById('allotment_dad_seeds').style.left = plot_seeds_left[plot];
+			document.getElementById('allotment_dad_seeds').style.zIndex = plot_action_z_index[plot];
+			document.getElementById('allotment_dad_seeds').style.display = "block";
+			dad_seeds_image = 0
+			document.getElementById('allotment_dad_seeds').src = dad_seeds_images[dad_seeds_image];
+			dad_seeds = setTimeout(dad_seeds_animation, 500);
+			
+			plot_action_array[plot] += 1
+			popup[plot] = setTimeout(popup_action, 6000 + Math.random()*3000, plot)
+			
+		} else if (plot_action_array[plot] >= 1 && plot_action_array[plot] < 3) {
+			plot_id = plot_ids[plot]
+			document.getElementById(plot_id).removeEventListener('click', do_popup_action)
+			document.getElementById('allotment_dad_idle').style.display = "none";
+			document.getElementById(plot_id).style.display = "none";
+			document.getElementById('allotment_dad_waters').style.top = plot_waters_top[plot];
+			document.getElementById('allotment_dad_waters').style.left = plot_waters_left[plot];
+			document.getElementById('allotment_dad_waters').style.zIndex = plot_action_z_index[plot];
+			document.getElementById('allotment_dad_waters').style.display = "block";
+			dad_waters_angle = 0
+			document.getElementById('allotment_dad_waters').style.transform = "rotate(" + dad_waters_angles[dad_waters_angle].toString() + "deg)";
+			dad_waters = setTimeout(dad_waters_animation, 300);
+			
+			score += 200
+			document.getElementById('score').innerHTML = "SCORE: " + ("000000" + score.toString()).substr(-6,6)
+			
+			plot_action_array[plot] += 1
+			clearTimeout(water_timer[plot])
+			popup[plot] = setTimeout(popup_action, 6000 + Math.random()*3000, plot)
+			
+			
+		} else {
+			produce_id = produce_ids[plot]
+			document.getElementById(produce_id).removeEventListener('click', do_popup_action)
+			document.getElementById('allotment_dad_idle').style.display = "none";
+			document.getElementById(produce_id).style.display = "none";
+			document.getElementById('allotment_dad_picks_carrots').style.top = plot_picks_top[plot];
+			document.getElementById('allotment_dad_picks_carrots').style.left = plot_picks_left[plot];
+			document.getElementById('allotment_dad_picks_carrots').style.zIndex = plot_action_z_index[plot];
+			document.getElementById('allotment_dad_picks_carrots').style.display = "block";
+			
+			document.getElementById('picking_sound_effect').currentTime = 0;
+			document.getElementById('picking_sound_effect').play()
+			
+			document.getElementById(label_ids[plot]).style.display = "none";
+			
+			release_dad = setTimeout(release_dad_pick, 700)
+			
+			plot_action_array[plot] = 0
+			score += plot_score[plot]
+			document.getElementById('score').innerHTML = "SCORE: " + ("000000" + score.toString()).substr(-6,6)
+			plot_score[plot] = 1000
+			popup[plot] = setTimeout(popup_action, 1000 + Math.random()*1000, plot)
+		}
+	
+	}
+	release_dad = null
+	release_dad_pick = function() {
+		dad_is_idle = true
+		document.getElementById('allotment_dad_picks_carrots').style.display = "none";
+		document.getElementById('allotment_dad_idle').style.display = "block";
+		
+	}
+	
+	decrease_time = function() {
+		time_remaining -= 1
+		if (time_remaining > 0) {
+			document.getElementById('time').innerHTML = "TIME: " + ("000" + time_remaining.toString()).substr(-3,3)
+			timer = setTimeout(decrease_time, 1000)
+		} else {
+			clean_up()
+			document.getElementById('final_score').innerHTML = ("000000" + score.toString()).substr(-6,6)
+			document.getElementById('end_screen').style.display = "block";
+			document.getElementById('final_image').style.display = "block";
+			
+		}
+	}
+
+	pressed_start = function(e) {
+
+		score = 0
+		document.getElementById('score').innerHTML = "TIME: " + ("000000" + score.toString()).substr(-6,6)
+		
+		document.getElementById('press_start').style.display = "none";
+		document.getElementById('title_menu').style.display = "none";
+		
+		document.getElementById('allotment_dad_idle').style.display = "block";
+		document.getElementById('score').style.display = "block";
+		document.getElementById('time').style.display = "block";
+		document.getElementById('time').innerHTML = "TIME: " + ("000" + time_remaining.toString()).substr(-3,3)
+		<!-- document.getElementById('horse1').style.display = "block"; -->
+		
+		dad_idle = setTimeout(dad_idle_animation, 500);
+		popup[0] = setTimeout(popup_action, 1500, 0);
+		popup[1] = setTimeout(popup_action, 1500, 1);
+		popup[2] = setTimeout(popup_action, 1500, 2);
+		popup[3] = setTimeout(popup_action, 1500, 3);
+		popup[4] = setTimeout(popup_action, 1500, 4);
+		popup[5] = setTimeout(popup_action, 1500, 5);
+		
+		timer = setTimeout(decrease_time, 1000)
+	}
+	
+	
+	clean_up = function() {
+	
+		for (i = 0; i < popup.length; i++) {
+			clearTimeout(popup[i])
+		}
+		
+		for (i = 0; i < water_timer.length; i++) {
+			clearTimeout(water_timer[i])
+		}
+		
+		clearTimeout(timer)
+		clearTimeout(release_dad)
+		clearTimeout(dad_seeds)
+		clearTimeout(dad_waters)
+		
+		for (i = 0; i < plot_ids.length; i++) {
+			document.getElementById(plot_ids[i]).style.display = "none";
+		}
+		
+		for (i = 0; i < label_ids.length; i++) {
+			document.getElementById(label_ids[i]).style.display = "none";
+		}
+		
+		for (i = 0; i < produce_ids.length; i++) {
+			document.getElementById(produce_ids[i]).style.display = "none";
+		}
+
+		document.getElementById('press_start').style.display = "none";
+		document.getElementById('score').style.display = "none";
+		document.getElementById('time').style.display = "none";
+		document.getElementById('allotment_dad_idle').style.display = "none";
+		document.getElementById('allotment_dad_seeds').style.display = "none";
+		document.getElementById('allotment_dad_waters').style.display = "none";
+		document.getElementById('allotment_dad_picks_carrots').style.display = "none";
+
+		for (i = 0; i < plot_action_array.length; i++) {
+			plot_action_array[i] = PLOT_ACTION_ARRAY_ORIG[i]
+		}
+		
+		time_remaining = TIME_REMAINING_ORIG
+		
+	}
+
+
+	
+	
+	
+	var card = document.getElementById('card'),
+		openB = document.getElementById('open'),
+		closeB = document.getElementById('close'),
+		timer = null,
+		increment = null;
+	  
+	  
+	openB.addEventListener('click', function () {
+		document.getElementById('music').currentTime = 0;
+		document.getElementById('music').play();
+		
+		card.setAttribute('class', 'open-half');
+		if (timer) clearTimeout(timer);
+		timer = setTimeout(function () {
+			card.setAttribute('class', 'open-fully');
+			document.getElementById('frontimage').style.display = "none";
+			timer = null;
+			
+			card_open = true
+			
+			document.getElementById('press_start').style.display = "block";
+			document.getElementById('title_menu').style.display = "block";
+			document.getElementById('press_start').addEventListener('click', pressed_start)
+
+		}, 1000);
+	});
+
+	closeB.addEventListener('click', function () {
+    
+		card.setAttribute('class', 'close-half');
+		if (timer) clearTimeout(timer);
+		if (increment) clearTimeout(increment);
+		timer = setTimeout(function () {
+			card.setAttribute('class', '');
+			timer = null;
+			
+			card_open = false
+			
+			document.getElementById('frontimage').style.display = "block";
+			document.getElementById('music').pause();
+			document.getElementById('music').currentTime = 0;
+			
+			document.getElementById('press_start').removeEventListener('click', pressed_start)
+			
+			clean_up()
+			
+			document.getElementById('end_screen').style.display = "none";
+			document.getElementById('final_image').style.display = "none";
+			
+			score = 0
+	  
+			
+
+	  
+		}, 1000);
+	});
+
+}());
+</script>
+</body>
+</html>
