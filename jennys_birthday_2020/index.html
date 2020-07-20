@@ -1,0 +1,570 @@
+<html>
+<head>
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Press+Start+2P">
+<style>
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+body {
+  background: #E5E5E5;
+  padding: 50px;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
+
+#card, #card-front, #card-inside {
+  height: 600px;
+}
+
+.wrap {
+    padding: 1.5em 2.5em;
+    height: 100%;
+}
+#card-front, #card-inside {
+  width: 70%;
+  -webkit-box-shadow: 2px 2px 30px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .5);
+  -moz-box-shadow: 2px 2px 30px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .5);
+  box-shadow: 2px 2px 30px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .5);
+  position: absolute;
+  left: 50%;
+  top: 5%;
+}
+
+
+#card-inside .wrap {
+    background: #FFFFFF;
+    -webkit-box-shadow: inset 2px 0 1px rgba(0, 0, 0, .05);
+    -moz-box-shadow: inset 2px 0 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 2px 0 1px rgba(0, 0, 0, .05);
+}
+#card {
+    max-width: 960px;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    perspective: 5000px;
+    -moz-perspective: 5000px;
+    -webkit-perspective: 5000px;
+    position: relative;
+}
+
+
+#card-inside {
+	background: #E5E5E5;
+	 background-size: 100% 100%;
+	
+}
+
+p {
+    margin-top: 1em;
+}
+
+p:first-child {
+    margin-top: 0;
+}
+
+p.signed {
+    margin-top: 1.5em;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#card-front {
+    background-color: #aaaaaa;
+            transform-origin: left;
+       -moz-transform-origin: left;
+    -webkit-transform-origin: left;
+            transition:         transform 1s linear;
+       -moz-transition:    -moz-transform 1s linear;
+    -webkit-transition: -webkit-transform 1s linear;
+    position: relative;
+}
+
+#card-front .wrap {
+            transition: background 1s linear;
+       -moz-transition: background 1s linear;
+    -webkit-transition: background 1s linear;
+}
+
+#card-front button {
+  position: absolute;
+  bottom: 1em;
+  right: -12px;
+  background: #F44;
+  color: #FFF;
+  font-family: 'Nobile', sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.5em;
+  padding: .5em;
+  border: none;
+  cursor: pointer;
+          box-shadow: 2px 2px 3px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .4);
+     -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .4);
+  -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, .25), 0 0 1px rgba(0, 0, 0, .4);
+}
+
+#card-front button:hover,
+#card-front button:focus {
+  background: #F22;
+}
+
+#close {
+  display: none;
+}
+
+#card.open-fully #close,
+#card-open-half #close {
+  display: inline;
+}
+
+#card.open-fully #open {
+  display: none;
+}
+
+
+#card.open-half #card-front,
+#card.close-half #card-front {
+            transform: rotateY(-90deg);
+       -moz-transform: rotateY(-90deg);
+    -webkit-transform: rotateY(-90deg);
+}
+#card.open-half #card-front .wrap {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+#card.open-fully #card-front,
+#card.close-half #card-front {
+  background: #FFEFEF;
+}
+
+#card.open-fully #card-front {
+    transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+}
+
+#card.open-fully #card-front .wrap {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#card.open-fully #card-front .wrap *,
+#card.close-half #card-front .wrap * {
+   display: none;
+}
+
+.wrapper {
+    position: absolute;
+    width: 80%;
+    height: 70%;
+	left: 12%;
+	top: 14%;
+	font-family: 'Press Start 2P';
+	overflow: hidden;
+	font-size: 100%;
+}
+
+.wrapper .overflow {
+    position: absolute;
+	z-index: 4;
+	width: 100%;
+	white-space: pre-wrap;
+	bottom: 0%;
+}
+
+.creature_moving {
+  position: absolute;
+  top: 42%;
+  width: 10%;
+  height: 10%;
+  z-index: 5;
+  background: transparent url("./creature_moving.png") no-repeat;   /* Our sprite as the viewport background */
+  animation: alternate_moving 1s steps(2) infinite; 
+  background-size: 200% 100%; /*(#cols*100%, #rows*100%) */
+  background-position: 0% 0%;
+}
+
+@keyframes alternate_moving {
+  100% { background-position: 200% 0%; } /*(100% + 100%/(steps-1) , 0 */
+  
+}
+
+.creature_talking {
+  position: absolute;
+  top: 42%;
+  left: 44%;
+  width: 10%;
+  height: 10%;
+  zIndex: 5;
+  background: transparent url("./creature_talking.png") no-repeat;   /* Our sprite as the viewport background */
+  animation: alternate_moving 1s steps(2) infinite; 
+  background-size: 200% 100%; /*(#cols*100%, #rows*100%) */
+  background-position: 0% 0%;
+}
+
+.creature_not_talking {
+  position: absolute;
+  top: 42%;
+  left: 44%;
+  width: 10%;
+  height: 10%;
+  zIndex: 5;
+  background: transparent url("./creature_talking.png") no-repeat;   /* Our sprite as the viewport background */
+  background-size: 200% 100%; /*(#cols*100%, #rows*100%) */
+  background-position: 0% 0%;
+}
+
+
+.masher {
+  position: absolute;
+  top: 85%;
+  left: 30%;
+  width: 40%;
+  height: 26%;
+  z-index: 10;
+  background: transparent url("./mashing.png") no-repeat;   /* Our sprite as the viewport background */
+  animation: mashing_fadein 2s linear, alternate_moving 0.5s steps(2) infinite; 
+  background-size: 200% 100%; /*(#cols*100%, #rows*100%) */
+  background-position: 0% 0%;
+}
+
+@keyframes mashing_fadein {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+.birthday_text1 {
+	position: absolute;
+    width: 80%;
+    height: 70%;
+	left: 32%;
+	top: 26%;
+	font-family: 'Press Start 2P';
+	font-size: 100%;
+	white-space: pre-wrap;
+}
+
+.birthday_text2 {
+	position: absolute;
+    width: 80%;
+    height: 70%;
+	left: 25%;
+	top: 57%;
+	font-family: 'Press Start 2P';
+	font-size: 100%;
+	white-space: pre-wrap;
+}
+
+
+</style>
+
+</head>
+<body>
+
+<div id="card">
+    <div id="card-inside">
+		<div style="position: absolute; top: 0%; width: 100%; height: 100%; display: block;margin-left: auto;  margin-right: auto; overflow: hidden;" id="inside_container">
+			<img src="./monitor.png" style="width: 100%; height: 100%; zIndex: 3" id="monitor">
+			<div class="wrapper" id="text_wrapper" style="display: none">
+				<div class="overflow" id="text"></div>
+			</div>
+			<div class="creature_moving" style="display: none; left: 7%" id="creature"></div>
+		</div>
+		
+    </div>
+
+    <div id="card-front">
+	  <div style="position: absolute; width: 100%; height: 100%;" id="frontimage">
+	  </div>
+      <button id="open">&gt;</button>
+      <button id="close">&lt;</button>
+    </div>
+	
+</div>
+
+
+
+
+  
+<script type="text/javascript">
+
+idle_text_flash = true
+text_idle_timer = null
+message_timer = null
+message_no = 1
+
+move_creature_timer = null
+
+fake_code = "\nstruct group_info init_groups = { .usage = ATOMIC_INIT(2) }; \n \nstruct group_info *groups_alloc(int gidsetsize){ \n    struct group_info *group_info; \n    int nblocks; \n    int i; \n \n \n    nblocks = (gidsetsize + NGROUPS_PER_BLOCK - 1) / NGROUPS_PER_BLOCK; \n    /* Make sure we always allocate at least one indirect block pointer */ \n    nblocks = nblocks ? : 1; \n    group_info = kmalloc(sizeof(*group_info) + nblocks*sizeof(gid_t *), GFP_USER); \n    if (!group_info) \n        return NULL; \n \n    group_info->ngroups = gidsetsize; \n    group_info->nblocks = nblocks; \n    atomic_set(&group_info->usage, 1); \n \n    if (gidsetsize <= NGROUPS_SMALL) \n        group_info->blocks[0] = group_info->small_block; \n    else { \n        for (i = 0; i < nblocks; i++) { \n            gid_t *b; \n            b = (void *)__get_free_page(GFP_USER); \n            if (!b) \n                goto out_undo_partial_alloc; \n            group_info->blocks[i] = b; \n        } \n    } \n    return group_info; \n \n \nout_undo_partial_alloc: \n \n    while (--i >= 0) { \n \n        free_page((unsigned long)group_info->blocks[i]); \n \n    } \n \n    kfree(group_info); \n \n    return NULL; \n \n} \n \n \n \nEXPORT_SYMBOL(groups_alloc); \n \n \n \nvoid groups_free(struct group_info *group_info) \n \n{ \n \n    if (group_info->blocks[0] != group_info->small_block) { \n \n        int i; \n \n        for (i = 0; i < group_info->nblocks; i++) \n \n\nstruct group_info init_groups = { .usage = ATOMIC_INIT(2) }; \n \nstruct group_info *groups_alloc(int gidsetsize){ \n    struct group_info *group_info; \n    int nblocks; \n    int i; \n \n \n    nblocks = (gidsetsize + NGROUPS_PER_BLOCK - 1) / NGROUPS_PER_BLOCK; \n    /* Make sure we always allocate at least one indirect block pointer */ \n    nblocks = nblocks ? : 1; \n    group_info = kmalloc(sizeof(*group_info) + nblocks*sizeof(gid_t *), GFP_USER); \n    if (!group_info) \n        return NULL; \n \n    group_info->ngroups = gidsetsize; \n    group_info->nblocks = nblocks; \n    atomic_set(&group_info->usage, 1); \n \n    if (gidsetsize <= NGROUPS_SMALL) \n        group_info->blocks[0] = group_info->small_block; \n    else { \n        for (i = 0; i < nblocks; i++) { \n            gid_t *b; \n            b = (void *)__get_free_page(GFP_USER); \n            if (!b) \n                goto out_undo_partial_alloc; \n            group_info->blocks[i] = b; \n        } \n    } \n    return group_info; \n \n \nout_undo_partial_alloc: \n \n    while (--i >= 0) { \n \n        free_page((unsigned long)group_info->blocks[i]); \n \n    } \n \n    kfree(group_info); \n \n    return NULL; \n \n} \n \n \n \nEXPORT_SYMBOL(groups_alloc); \n \n \n \nvoid groups_free(struct group_info *group_info) \n \n{ \n \n    if (group_info->blocks[0] != group_info->small_block) { \n \n        int i; \n \n        for (i = 0; i < group_info->nblocks; i++) \n \n\nstruct group_info init_groups = { .usage = ATOMIC_INIT(2) }; \n \nstruct group_info *groups_alloc(int gidsetsize){ \n    struct group_info *group_info; \n    int nblocks; \n    int i; \n \n \n    nblocks = (gidsetsize + NGROUPS_PER_BLOCK - 1) / NGROUPS_PER_BLOCK; \n    /* Make sure we always allocate at least one indirect block pointer */ \n    nblocks = nblocks ? : 1; \n    group_info = kmalloc(sizeof(*group_info) + nblocks*sizeof(gid_t *), GFP_USER); \n    if (!group_info) \n        return NULL; \n \n    group_info->ngroups = gidsetsize; \n    group_info->nblocks = nblocks; \n    atomic_set(&group_info->usage, 1); \n \n    if (gidsetsize <= NGROUPS_SMALL) \n        group_info->blocks[0] = group_info->small_block; \n    else { \n        for (i = 0; i < nblocks; i++) { \n            gid_t *b; \n            b = (void *)__get_free_page(GFP_USER); \n            if (!b) \n                goto out_undo_partial_alloc; \n            group_info->blocks[i] = b; \n        } \n    } \n    return group_info; \n \n \nout_undo_partial_alloc: \n \n    while (--i >= 0) { \n \n        free_page((unsigned long)group_info->blocks[i]); \n \n    } \n \n    kfree(group_info); \n \n    return NULL; \n \n} \n \n \n \nEXPORT_SYMBOL(groups_alloc); \n \n \n \nvoid groups_free(struct group_info *group_info) \n \n{ \n \n    if (group_info->blocks[0] != group_info->small_block) { \n \n        int i; \n \n        for (i = 0; i < group_info->nblocks; i++) \n \n echo('Hello World');\n>\n>\n>\n> COMPILE? (Y/N)"
+fake_code_index = 0
+
+message1 = "Sorry I didn't make you a card for your birthday.\n>"
+message2 = "\n>   :(   \n>\n>"
+message3 = "I thought instead you could maybe make one yourself?\n>"
+message4 = "\n>GET READY TO CODE...\n>\n>"
+
+message5 = "\n>\n>\n>COMPILING............DONE"
+
+birthday_message1 = "HAPPY BIRTHDAY\n    JENNY!     \n Well done on\nmaking your own\n     card!"
+birthday_message2 = "Lots of love,\n    Stephen & Helen"
+
+
+message_manager = function() {
+	if (message_no == 1) {
+		setTimeout(write_message, 3000, message1, 0)
+		message_no++
+	} else if (message_no == 2) {
+		setTimeout(write_message, 1500, message2, 0)
+		message_no++
+	} else if (message_no == 3) {
+		setTimeout(write_message, 1500, message3, 0)
+		message_no++
+	} else if (message_no == 4) {
+		setTimeout(write_message, 1500, message4, 0)
+		message_no++
+	} else if (message_no == 5) {
+		create_mashing()
+		document.addEventListener('keypress', fake_coding)
+		message_no++
+	} else if (message_no == 6) {
+		if (document.getElementById("mashing")) {document.getElementById("mashing").remove();}
+		if (document.getElementById("mashing_text")) {document.getElementById("mashing_text").remove();}
+		document.removeEventListener('keypress', fake_coding)
+		document.addEventListener('keypress', compile_code)
+		message_no++
+	} else if (message_no == 7) {
+		setTimeout(write_message, 1500, message5, 0)
+		message_no++
+	} else if (message_no == 8) {
+		document.getElementById('text').innerHTML = ""
+		stopTextIdle()
+		document.getElementById("creature").style.display = "block"
+		move_creature()
+		message_no++
+	} else if (message_no == 9) {
+		document.getElementById("creature").className = "creature_talking"
+		message_no++
+		create_birthday_message1()
+	}
+}
+
+var textIdle = function() {
+
+	el = document.getElementById('text')
+	el_inner = el.innerHTML
+	
+	if (idle_text_flash && el_inner[el_inner.length - 1] == "_") {
+		el_inner = el_inner.slice(0, -1)
+		idle_text_flash = false
+	} else {
+		el_inner = el_inner + "_"
+		idle_text_flash = true
+	}
+	
+	el.innerHTML = el_inner
+	text_idle_timer = setTimeout(textIdle, 700)
+}
+
+stopTextIdle = function() {
+	if (text_idle_timer) {
+		clearTimeout(text_idle_timer)
+	}
+	el = document.getElementById('text')
+	el_inner = el.innerHTML
+	if (el_inner[el_inner.length - 1] == "_") {
+		el_inner = el_inner.slice(0, -1)
+		el.innerHTML = el_inner
+	}
+}
+
+	
+
+write_message = function (message, index) {
+	stopTextIdle()
+	el = document.getElementById('text')
+	el_inner = el.innerHTML
+	if (index < message.length) {
+		el_inner = el_inner.concat(message[index++]);
+		el.innerHTML = el_inner
+		message_timer = setTimeout(write_message, 100, message, index);
+	} else {
+		textIdle()
+		message_manager()
+	}
+}
+
+
+fake_coding = function() {
+	stopTextIdle()
+	el = document.getElementById('text')
+	el_inner = el.innerHTML
+	
+	for (i = 0; i < 10; i++){
+		if (fake_code_index < fake_code.length) {
+			el_inner = el_inner.concat(fake_code[fake_code_index]);
+			fake_code_index++
+			el.innerHTML = el_inner
+		} else {
+			message_manager()
+			break 
+		}
+	}
+	
+	textIdle()
+	
+}
+
+create_mashing = function() {
+	parent = document.getElementById('card-inside')
+	masher = document.createElement("DIV");
+	masher.className = "masher"
+	masher.id = "mashing"
+	parent.appendChild(masher)
+}
+
+compile_code = function(e) {
+	console.log(e)
+	if (e.key == "Enter" || e.key == "y") {
+		document.removeEventListener('keypress', compile_code)
+		message_manager()
+	}
+}
+	
+	
+move_creature = function() {
+	interval = 5
+	creature_el = document.getElementById('creature')
+	creature_left = parseFloat(creature_el.style.left.slice(0, -1))
+	if (creature_left+interval > 44) {creature_left = 44-interval}
+	
+	creature_el.style.left = (creature_left+interval).toString() + "%"
+	
+	if (!creature_left || creature_left+interval < 44) {
+		move_creature_timer = setTimeout(move_creature, 1000)
+	} else {
+		message_manager()
+	}
+}
+
+create_birthday_message1 = function() {
+	parent = document.getElementById('inside_container')
+	b_message1 = document.createElement("DIV");
+	b_message1.className = "birthday_text1"
+	b_message1.id = "birthday_message1"
+	parent.appendChild(b_message1)
+	write_birthday_message1(0)
+}
+
+write_birthday_message1 = function(index) {
+	el = document.getElementById('birthday_message1')
+	el_inner = el.innerHTML
+	if (index < birthday_message1.length) {
+		el_inner = el_inner.concat(birthday_message1[index++]);
+		el.innerHTML = el_inner
+		message_timer = setTimeout(write_birthday_message1, 100, index);
+	} else {
+		create_birthday_message2()
+	}
+}
+
+create_birthday_message2 = function() {
+	parent = document.getElementById('inside_container')
+	b_message2 = document.createElement("DIV");
+	b_message2.className = "birthday_text2"
+	b_message2.id = "birthday_message2"
+	parent.appendChild(b_message2)
+	write_birthday_message2(0)
+}
+
+write_birthday_message2 = function(index) {
+	el = document.getElementById('birthday_message2')
+	el_inner = el.innerHTML
+	if (index < birthday_message2.length) {
+		el_inner = el_inner.concat(birthday_message2[index++]);
+		el.innerHTML = el_inner
+		message_timer = setTimeout(write_birthday_message2, 100, index);
+	} else {
+		document.getElementById("creature").className = "creature_not_talking"
+	}
+}
+
+cleanUp = function() {
+
+	document.getElementById('monitor').style.display = "none";
+	document.getElementById('text_wrapper').style.display = "none";
+	
+	if (text_idle_timer) {clearTimeout(text_idle_timer)}
+	if (message_timer) {clearTimeout(message_timer)}
+	if (move_creature_timer) {clearTimeout(move_creature_timer)}
+	
+	document.removeEventListener('keypress', fake_coding)
+	document.removeEventListener('keypress', compile_code)
+	
+	if (document.getElementById("creature")) {document.getElementById("creature").remove();}
+	if (document.getElementById("mashing")) {document.getElementById("mashing").remove();}
+	if (document.getElementById("mashing_text")) {document.getElementById("mashing_text").remove();}
+	if (document.getElementById("birthday_message1")) {document.getElementById("birthday_message1").remove();}
+	if (document.getElementById("birthday_message2")) {document.getElementById("birthday_message2").remove();}
+}
+
+var card_open = false
+
+var card = document.getElementById('card'),
+	openB = document.getElementById('open'),
+	closeB = document.getElementById('close'),
+	timer = null
+
+  
+  
+openB.addEventListener('click', function () {
+	
+	card.setAttribute('class', 'open-half');
+	if (timer) clearTimeout(timer);
+	timer = setTimeout(function () {
+		card.setAttribute('class', 'open-fully');
+		document.getElementById('frontimage').style.display = "none";
+		document.getElementById('monitor').style.display = "block";
+		document.getElementById('text_wrapper').style.display = "block";
+		document.getElementById('text').innerHTML = ">"
+		
+		message_no = 1
+		message_manager()
+		textIdle()
+		timer = null;
+		
+		card_open = true
+		
+	}, 1000);
+});
+
+
+
+
+closeB.addEventListener('click', function () {
+
+	card.setAttribute('class', 'close-half');
+	
+	if (timer) clearTimeout(timer);
+	timer = setTimeout(function () {
+		card.setAttribute('class', '');
+		timer = null;
+
+		document.getElementById('frontimage').style.display = "block";
+		
+		cleanUp()
+		
+		card_open = false
+		
+  
+	}, 1000);
+	
+});
+</script>
+</body>
+</html>
