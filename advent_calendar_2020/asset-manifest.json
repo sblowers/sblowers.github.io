@@ -1,20 +1,22 @@
 {
   "files": {
     "main.css": "./static/css/main.0e6ce8b1.chunk.css",
-    "main.js": "./static/js/main.f1fb0264.chunk.js",
-    "main.js.map": "./static/js/main.f1fb0264.chunk.js.map",
+    "main.js": "./static/js/main.fe131bd1.chunk.js",
+    "main.js.map": "./static/js/main.fe131bd1.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.39313a88.js",
     "runtime-main.js.map": "./static/js/runtime-main.39313a88.js.map",
     "static/css/2.7eb55dfa.chunk.css": "./static/css/2.7eb55dfa.chunk.css",
-    "static/js/2.9e46f551.chunk.js": "./static/js/2.9e46f551.chunk.js",
-    "static/js/2.9e46f551.chunk.js.map": "./static/js/2.9e46f551.chunk.js.map",
+    "static/js/2.046d0fc9.chunk.js": "./static/js/2.046d0fc9.chunk.js",
+    "static/js/2.046d0fc9.chunk.js.map": "./static/js/2.046d0fc9.chunk.js.map",
     "static/js/3.328299b8.chunk.js": "./static/js/3.328299b8.chunk.js",
     "static/js/3.328299b8.chunk.js.map": "./static/js/3.328299b8.chunk.js.map",
     "index.html": "./index.html",
     "static/css/2.7eb55dfa.chunk.css.map": "./static/css/2.7eb55dfa.chunk.css.map",
     "static/css/main.0e6ce8b1.chunk.css.map": "./static/css/main.0e6ce8b1.chunk.css.map",
-    "static/js/2.9e46f551.chunk.js.LICENSE.txt": "./static/js/2.9e46f551.chunk.js.LICENSE.txt",
-    "static/media/advent_background.da07cc5d.png": "./static/media/advent_background.da07cc5d.png",
+    "static/js/2.046d0fc9.chunk.js.LICENSE.txt": "./static/js/2.046d0fc9.chunk.js.LICENSE.txt",
+    "static/media/advent_background.44b6c84d.png": "./static/media/advent_background.44b6c84d.png",
+    "static/media/advent_background_rear.6c826e55.png": "./static/media/advent_background_rear.6c826e55.png",
+    "static/media/cardboard_back.546c6121.jpg": "./static/media/cardboard_back.546c6121.jpg",
     "static/media/cheering.31ae307a.mp3": "./static/media/cheering.31ae307a.mp3",
     "static/media/modal_decor.bb3945ee.png": "./static/media/modal_decor.bb3945ee.png",
     "static/media/test.ff137c04.mp3": "./static/media/test.ff137c04.mp3",
@@ -25,8 +27,8 @@
   "entrypoints": [
     "static/js/runtime-main.39313a88.js",
     "static/css/2.7eb55dfa.chunk.css",
-    "static/js/2.9e46f551.chunk.js",
+    "static/js/2.046d0fc9.chunk.js",
     "static/css/main.0e6ce8b1.chunk.css",
-    "static/js/main.f1fb0264.chunk.js"
+    "static/js/main.fe131bd1.chunk.js"
   ]
 }
