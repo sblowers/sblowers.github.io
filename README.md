@@ -17,3 +17,6 @@ Gardener Mum! Adding movement to games is super complicated!
 
 ### [Jenny's Birthday Card (July 2020)](https://sblowers.github.io/jennys_birthday_2020/)
 Sorry I didn't get around to doing this on time! Here is a way to make one yourself!
+
+### [2020 Advent Calendar (December 2020)](https://sblowers.github.io/advent_calendar_2020/)
+A selection of songs in an advent calendar to bring cheer at the end of the year!
