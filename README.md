@@ -20,3 +20,6 @@ Sorry I didn't get around to doing this on time! Here is a way to make one yours
 
 ### [2020 Advent Calendar (December 2020)](https://sblowers.github.io/advent_calendar_2020/)
 A selection of songs in an advent calendar to bring cheer at the end of the year!
+
+### [IGS 2022 Advent Calendar (December 2022)](https://sblowers.github.io/IGS_advent_calendar_2022/)
+A selection of songs in an advent calendar to bring cheer at the end of the year (part 2!)!
