@@ -454,7 +454,7 @@ footer {
 		
 	do_popup_action = function(e) {
 		if (!dad_is_idle) {return}
-		plot = parseInt(e.path[0].id.substr(-1),10)-1
+		plot = parseInt(e.srcElement.id.substr(-1),10)-1
 		plot_id = plot_ids[plot]
 		
 		
