@@ -23,3 +23,6 @@ A selection of songs in an advent calendar to bring cheer at the end of the year
 
 ### [IGS 2022 Advent Calendar (December 2022)](https://sblowers.github.io/IGS_advent_calendar_2022/)
 A selection of songs in an advent calendar to bring cheer at the end of the year (part 2!)!
+
+### [Penguin Cam Christmas Card (December 2024)](https://sblowers.github.io/christmas_card_2024/)
+A christmas card inspired by the Edinburgh Zoo Penguin Cam!
