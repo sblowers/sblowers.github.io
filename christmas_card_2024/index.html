@@ -15,6 +15,7 @@ body {
 
 h1 {
   font-family: NewBeginnings, sans-serif;
+  font-size: 5vw;
 
 }
 
@@ -188,8 +189,9 @@ p.writing {
   font-family: "Qwitcher Grypen", cursive;
   font-weight: 400;
   font-style: normal;
-  font-size: 2.5em;
+  font-size:  8vw;
   margin: 10px;
+  text-size-adjust: auto;
 }
 
 p.signed {
@@ -198,8 +200,9 @@ p.signed {
     font-weight: 400;
     font-style: normal;
     text-align: center;
-    font-size: 2.5em;
+    font-size:  8vw;
     margin: 10px;
+    text-size-adjust: auto;
 }
 
 .title {
@@ -213,6 +216,15 @@ p.signed {
     border-radius: 15px;
     background-color:rgba(255, 255, 255, 0.9);
 }
+
+/* @media only screen and (max-width: 600px) {
+    .p.signed {
+       font-size: 5em;
+    }
+    p.writing {
+        font-size: 5em;
+    }
+} */
 
 .centre {
   max-width: fit-content;
@@ -235,6 +247,7 @@ p.signed {
 <div class="title">
     <h1 style="padding: 1px; padding-left: 10px;">Merry Christmas!! - Watch the penguins live!</h1>
 </div>
+<div class="centre">
 <div class="container" id="container">
 	
 	<div class="sky-background" id="sky-background"></div>
@@ -255,6 +268,7 @@ p.signed {
 	<p class="signed">
 	  Stephen, Helen, Rory and Niamh
 	</p>
+</div>
 </div>
 </div>
 
