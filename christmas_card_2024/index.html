@@ -399,7 +399,26 @@ p.signed {
 	penguin_array.push(new Penguin("penguin11", background, "penguin", "17%", 60, 90, "35", "50", 5))
 	
 	var check_time_timeout = null
-	
+    
+    wake_up_penguins = function() {
+
+        sky_element.className = "sky-background day"
+		container_element.classList.remove("greyscale")
+		for (key in penguin_array) {
+		  penguin = penguin_array[key]
+		  penguin.wake()
+		}
+		document.getElementById('crickets').pause();
+		document.getElementById('penguins').currentTime = 0;
+	    document.getElementById('penguins').play();
+
+        document.getElementById('wake-up-penguins').classList.add('hidden')
+
+        clearTimeout(check_time_timeout)
+        check_time_timeout = setTimeout(check_time, 5*60000)
+    }
+    document.getElementById("wake-up-penguins-button").onclick = wake_up_penguins; 
+
 	check_time = function() {
 		currentTime = new Date()
 		currentHour = currentTime.getHours();
@@ -418,7 +437,7 @@ p.signed {
 		  document.getElementById('crickets').currentTime = 0;
 	      document.getElementById('crickets').play();
 
-          document.getElementById('wake-up-penguins').classList.remove('hidden')
+        //   document.getElementById('wake-up-penguins').classList.remove('hidden')
 		} else if ((currentHour < 19 && currentHour >= 18) || (currentHour < 7 && currentHour >= 6)) {
 		  sky_element.className = "sky-background sunset"
 		  container_element.classList.remove("greyscale")
@@ -430,7 +449,7 @@ p.signed {
 		  document.getElementById('penguins').currentTime = 0;
 	      document.getElementById('penguins').play();
 
-          document.getElementById('wake-up-penguins').classList.add('hidden')
+        //   document.getElementById('wake-up-penguins').classList.add('hidden')
 		} else {
 		  sky_element.className = "sky-background day"
 		  container_element.classList.remove("greyscale")
@@ -442,33 +461,16 @@ p.signed {
 		  document.getElementById('penguins').currentTime = 0;
 	      document.getElementById('penguins').play();
 
-          document.getElementById('wake-up-penguins').classList.add('hidden')
+        //   document.getElementById('wake-up-penguins').classList.add('hidden')
 		}
 		
 		
-		
+		wake_up_penguins()
 		check_time_timeout = setTimeout(check_time, 5*60000)
-	
+        
 	}
 	
-    wake_up_penguins = function() {
-
-        sky_element.className = "sky-background day"
-		container_element.classList.remove("greyscale")
-		for (key in penguin_array) {
-		  penguin = penguin_array[key]
-		  penguin.wake()
-		}
-		document.getElementById('crickets').pause();
-		document.getElementById('penguins').currentTime = 0;
-	    document.getElementById('penguins').play();
-
-        document.getElementById('wake-up-penguins').classList.add('hidden')
-
-        clearTimeout(check_time_timeout)
-        check_time_timeout = setTimeout(check_time, 5*60000)
-    }
-    document.getElementById("wake-up-penguins-button").onclick = wake_up_penguins;    
+       
 
 
 	play = function(e) {
